@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radar", "Radar\Radar.csproj", "{8A7EA063-B408-4962-B1E3-D8BF65C1CF34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radar.Tests", "Radar.Tests\Radar.Tests.csproj", "{79745BC0-59BD-426E-AFF2-E7BA943A2C1B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8A7EA063-B408-4962-B1E3-D8BF65C1CF34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A7EA063-B408-4962-B1E3-D8BF65C1CF34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A7EA063-B408-4962-B1E3-D8BF65C1CF34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A7EA063-B408-4962-B1E3-D8BF65C1CF34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79745BC0-59BD-426E-AFF2-E7BA943A2C1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79745BC0-59BD-426E-AFF2-E7BA943A2C1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79745BC0-59BD-426E-AFF2-E7BA943A2C1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79745BC0-59BD-426E-AFF2-E7BA943A2C1B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
