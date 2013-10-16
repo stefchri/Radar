@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Radar.Tests")]
+[assembly: AssemblyTitle("RadarMVC")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Radar.Tests")]
+[assembly: AssemblyProduct("RadarMVC")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("63e3e90f-6a5f-4cf4-92ce-e60cde7c8037")]
+[assembly: Guid("d96922b5-19eb-40bc-a535-7f93a68865fd")]
 
 // Version information for an assembly consists of the following four values:
 //
