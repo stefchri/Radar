@@ -1,0 +1,158 @@
+body {
+    font-size: .85em;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+    background-color: #fff;
+}
+.container {
+    width: 960px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+
+/********* GENERAL **********/
+header a{
+    color: #fff;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+h1,h2,h3,h4 {
+    color: #2e9a66;
+    font-family: "Open Sans", sans-serif;
+}
+h1 {
+    font-size: 30px;
+}
+h2 {
+    font-size: 25px;
+}
+h3 {
+    font-size: 20px;
+}
+h4 {
+    font-size: 16px;
+}
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.clearfix {
+  display: inline-block;
+}
+html[xmlns] .clearfix {
+  display: block;
+}
+* html .clearfix {
+  height: 1%;
+}
+.clear {
+    clear: both;
+}
+
+/********* HEADER **********/
+header {
+    background-color: #2e9a66;
+    width: 100%;
+    height: 60px;
+    -webkit-box-shadow:  0px 0px 5px 1px #000;
+    box-shadow:  0px 0px 5px 1px #000;
+    position: relative;
+    z-index: 10;
+}
+header #logo, header #logo img {
+    display: block;
+    width: 200px;
+    height: 60px;
+}
+header #logo {
+    float: left;
+}
+header .container div {
+    float: right;
+}
+header .container div a {
+    line-height: 60px;
+}
+
+
+/********* FOOTER **********/
+footer {
+    background-color: #eae5e5;
+    width: 100%;
+    height: 50px;
+    border-top: 1px solid #fff;
+}
+footer #socialbuttons {
+    height: 39px;
+    float:left;
+    padding-top: 11px;
+}
+footer #socialbuttons a {
+    float:left;
+    display: block;
+    margin-right: 13px;
+}
+footer #copy {
+    height: 50px;
+    float: right;
+    line-height: 58px;
+}
+footer #copy a {
+    color: #000;
+}
+
+/********* STICKY FOOTER **********/
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -51px;
+}
+.footer, .push {
+  height: 51px;
+}
+
+/********* HOME/LOGIN **********/
+.mapbg {
+    background: url(../img/layout/mapbg.png) center center no-repeat;
+    height: 100%;
+    width: 100%;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+#heading {
+    padding-top: 50px;
+    height: 250px;
+    width: 100%;
+    background: rgba(255,255,255,0.85);
+}
+#heading h1 {
+    font-weight: 300;
+    font-size: 50px;
+}
+#heading h1 strong {
+    font-weight: 600;
+}
+#heading .baseline {
+    font-family: "Open Sans", sans-serif;
+    font-size: 23px;
+    color: #2E9A66;
+    font-weight: 300;
+    line-height: 40px;
+    margin-top: 5px;
+}

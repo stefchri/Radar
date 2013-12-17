@@ -1,0 +1,14 @@
+﻿@model  RadarMVC.Models.LoginModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+@Html.ActionLink("Login with Facebook", "Facebook")
+OR
+@using (Html.BeginForm()) { 
+
+@Html.EditorForModel()
+@Html.ValidationSummary()
+<input type="submit" value="submit"/>
+}

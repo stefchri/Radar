@@ -1,0 +1,594 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{03442469-4E33-4CD0-8168-1FDC70EF6461}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RadarAPI</RootNamespace>
+    <AssemblyName>RadarAPI</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AttributeRouting">
+      <HintPath>..\packages\AttributeRouting.Core.3.5.6\lib\net40\AttributeRouting.dll</HintPath>
+    </Reference>
+    <Reference Include="AttributeRouting.Web">
+      <HintPath>..\packages\AttributeRouting.Core.Web.3.5.6\lib\net40\AttributeRouting.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="AttributeRouting.Web.Http">
+      <HintPath>..\packages\AttributeRouting.Core.Http.3.5.6\lib\net40\AttributeRouting.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="AttributeRouting.Web.Http.WebHost">
+      <HintPath>..\packages\AttributeRouting.WebApi.3.5.6\lib\net40\AttributeRouting.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.2\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Tracing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Tracing.4.0.0\lib\net40\System.Web.Http.Tracing.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.OData, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.4.0.0\lib\net40\System.Web.Http.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Data.Edm.5.2.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Data.OData.5.2.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Spatial, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\System.Spatial.5.2.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.0.0.0\lib\WebActivator.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AttributeRoutingHttpConfig.cs" />
+    <Compile Include="App_Start\BasicAuthenticationMessageHandler.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocationController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\WEB\AccountController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="crossdomain.xml" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Radar\app\lib\angular\angular-animate.min.js.map" />
+    <Content Include="Radar\app\lib\angular\angular-cookies.min.js.map" />
+    <Content Include="Radar\app\lib\angular\angular-loader.min.js.map" />
+    <Content Include="Radar\app\lib\angular\angular-resource.min.js.map" />
+    <Content Include="Radar\app\lib\angular\angular-route.min.js.map" />
+    <Content Include="Radar\app\lib\angular\angular-sanitize.min.js.map" />
+    <Content Include="Radar\app\lib\angular\angular-touch.min.js.map" />
+    <Content Include="Radar\app\lib\angular\angular.min.js.map" />
+    <Content Include="Radar\app\lib\angular\errors.json" />
+    <Content Include="Radar\app\lib\angular\version.json" />
+    <Content Include="Radar\app\partials\partial3.html" />
+    <Content Include="Radar\doc\crossdomain.md" />
+    <Content Include="Radar\doc\css.md" />
+    <Content Include="Radar\doc\extend.md" />
+    <Content Include="Radar\doc\faq.md" />
+    <Content Include="Radar\doc\html.md" />
+    <Content Include="Radar\doc\js.md" />
+    <Content Include="Radar\doc\misc.md" />
+    <Content Include="Radar\doc\TOC.md" />
+    <Content Include="Radar\doc\usage.md" />
+    <Content Include="Radar\img\.gitignore" />
+    <Content Include="Radar\LICENSE.md" />
+    <Content Include="Radar\README.md" />
+    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="humans.txt" />
+    <Content Include="Radar\apple-touch-icon-precomposed.png" />
+    <Content Include="Radar\app\css\radar.css" />
+    <Content Include="Radar\app\img\layout\fb.png" />
+    <Content Include="Radar\app\img\layout\googlep.png" />
+    <Content Include="Radar\app\img\layout\logo.png" />
+    <Content Include="Radar\app\img\layout\mapbg.png" />
+    <Content Include="Radar\app\img\layout\shadow.png" />
+    <Content Include="Radar\app\img\layout\twitter.png" />
+    <Content Include="Radar\app\index.html" />
+    <Content Include="Radar\app\js\app.js" />
+    <Content Include="Radar\app\js\controllers\controllers.js" />
+    <Content Include="Radar\app\js\directives.js" />
+    <Content Include="Radar\app\js\filters.js" />
+    <Content Include="Radar\app\js\services.js" />
+    <Content Include="Radar\app\lib\angular\angular-animate.js" />
+    <Content Include="Radar\app\lib\angular\angular-animate.min.js" />
+    <Content Include="Radar\app\lib\angular\angular-cookies.js" />
+    <Content Include="Radar\app\lib\angular\angular-cookies.min.js" />
+    <Content Include="Radar\app\lib\angular\angular-csp.css" />
+    <Content Include="Radar\app\lib\angular\angular-loader.js" />
+    <Content Include="Radar\app\lib\angular\angular-loader.min.js" />
+    <Content Include="Radar\app\lib\angular\angular-resource.js" />
+    <Content Include="Radar\app\lib\angular\angular-resource.min.js" />
+    <Content Include="Radar\app\lib\angular\angular-route.js" />
+    <Content Include="Radar\app\lib\angular\angular-route.min.js" />
+    <Content Include="Radar\app\lib\angular\angular-sanitize.js" />
+    <Content Include="Radar\app\lib\angular\angular-sanitize.min.js" />
+    <Content Include="Radar\app\lib\angular\angular-touch.js" />
+    <Content Include="Radar\app\lib\angular\angular-touch.min.js" />
+    <Content Include="Radar\app\lib\angular\angular.js" />
+    <Content Include="Radar\app\lib\angular\angular.min.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_af-na.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_af-za.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_af.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_am-et.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_am.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ar-001.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ar-ae.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ar-bh.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ar-dz.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ar-eg.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ar-iq.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ar-jo.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ar-kw.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ar-lb.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ar-ly.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ar-ma.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ar-om.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ar-qa.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ar-sa.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ar-sd.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ar-sy.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ar-tn.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ar-ye.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ar.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_bg-bg.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_bg.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_bn-bd.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_bn-in.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_bn.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ca-ad.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ca-es.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ca.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_cs-cz.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_cs.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_da-dk.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_da.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_de-at.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_de-be.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_de-ch.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_de-de.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_de-li.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_de-lu.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_de.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_el-cy.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_el-gr.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_el.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-as.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-au.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-bb.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-be.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-bm.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-bw.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-bz.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-ca.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-dsrt-us.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-dsrt.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-fm.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-gb.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-gu.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-gy.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-hk.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-ie.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-in.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-iso.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-jm.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-mh.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-mp.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-mt.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-mu.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-na.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-nz.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-ph.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-pk.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-pr.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-pw.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-sg.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-tc.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-tt.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-um.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-us.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-vg.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-vi.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-za.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en-zw.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_en.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-419.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-ar.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-bo.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-cl.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-co.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-cr.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-do.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-ea.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-ec.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-es.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-gq.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-gt.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-hn.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-ic.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-mx.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-ni.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-pa.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-pe.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-pr.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-py.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-sv.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-us.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-uy.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es-ve.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_es.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_et-ee.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_et.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_eu-es.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_eu.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fa-af.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fa-ir.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fa.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fi-fi.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fi.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fil-ph.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fil.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-be.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-bf.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-bi.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-bj.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-bl.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-ca.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-cd.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-cf.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-cg.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-ch.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-ci.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-cm.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-dj.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-fr.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-ga.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-gf.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-gn.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-gp.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-gq.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-km.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-lu.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-mc.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-mf.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-mg.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-ml.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-mq.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-ne.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-re.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr-yt.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_fr.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_gl-es.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_gl.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_gsw-ch.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_gsw.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_gu-in.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_gu.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_he-il.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_he.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_hi-in.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_hi.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_hr-hr.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_hr.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_hu-hu.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_hu.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_id-id.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_id.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_in.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_is-is.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_is.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_it-it.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_it-sm.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_it.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_iw.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ja-jp.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ja.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_kn-in.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_kn.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ko-kr.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ko.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ln-cd.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ln.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_lt-lt.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_lt.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_lv-lv.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_lv.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ml-in.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ml.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_mr-in.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_mr.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ms-my.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ms.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_mt-mt.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_mt.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_nl-cw.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_nl-nl.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_nl-sx.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_nl.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_no.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_or-in.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_or.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_pl-pl.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_pl.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_pt-br.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_pt-pt.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_pt.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ro-ro.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ro.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ru-ru.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ru.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_sk-sk.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_sk.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_sl-si.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_sl.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_sq-al.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_sq.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_sr-cyrl-rs.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_sr-latn-rs.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_sr.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_sv-se.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_sv.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_sw-tz.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_sw.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ta-in.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ta.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_te-in.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_te.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_th-th.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_th.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_tl.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_tr-tr.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_tr.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_uk-ua.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_uk.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ur-pk.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_ur.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_vi-vn.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_vi.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_zh-cn.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_zh-hans-cn.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_zh-hk.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_zh-tw.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_zh.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_zu-za.js" />
+    <Content Include="Radar\app\lib\angular\i18n\angular-locale_zu.js" />
+    <Content Include="Radar\app\lib\angular\version.txt" />
+    <Content Include="Radar\app\partials\home.html" />
+    <Content Include="Radar\app\partials\partial2.html" />
+    <Content Include="Radar\crossdomain.xml" />
+    <Content Include="Radar\css\main.css" />
+    <Content Include="Radar\css\normalize.css" />
+    <Content Include="Radar\favicon.ico" />
+    <Content Include="Radar\humans.txt" />
+    <Content Include="Radar\robots.txt" />
+    <Content Include="Radar\scripts\modernizr-2.6.2.min.js" />
+    <Content Include="robots.txt" />
+    <Content Include="Scripts\jquery-1.8.2.js" />
+    <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RadarBAL\RadarBAL.csproj">
+      <Project>{2744c8b8-ad3e-4079-9816-34cdf3d8449d}</Project>
+      <Name>RadarBAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RadarModels\RadarModels.csproj">
+      <Project>{8ebb13a1-ecd7-4c13-9f54-f8b0bea4766b}</Project>
+      <Name>RadarModels</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>9352</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:4911/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

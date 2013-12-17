@@ -1,0 +1,14 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Stefaan Christiaens -- Developer - Designer - CEO -- @stefchri
+
+
+# TECHNOLOGY COLOPHON
+	
+	.NET WEB API
+	Entity Framework 6 Code First Fluent API with UoW patterns
+    HTML5, CSS3
+    Normalize.css, AngularJS, Modernizr

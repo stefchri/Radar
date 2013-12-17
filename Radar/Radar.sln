@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadarMVC", "RadarMVC\RadarMVC.csproj", "{0AD10DB5-9BBA-4A87-8D57-C80E579EB5B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadarModels", "RadarModels\RadarModels.csproj", "{8EBB13A1-ECD7-4C13-9F54-F8B0BEA4766B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadarBAL", "RadarBAL\RadarBAL.csproj", "{2744C8B8-AD3E-4079-9816-34CDF3D8449D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadarAPI", "RadarAPI\RadarAPI.csproj", "{03442469-4E33-4CD0-8168-1FDC70EF6461}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +13,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0AD10DB5-9BBA-4A87-8D57-C80E579EB5B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0AD10DB5-9BBA-4A87-8D57-C80E579EB5B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0AD10DB5-9BBA-4A87-8D57-C80E579EB5B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0AD10DB5-9BBA-4A87-8D57-C80E579EB5B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EBB13A1-ECD7-4C13-9F54-F8B0BEA4766B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EBB13A1-ECD7-4C13-9F54-F8B0BEA4766B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EBB13A1-ECD7-4C13-9F54-F8B0BEA4766B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EBB13A1-ECD7-4C13-9F54-F8B0BEA4766B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2744C8B8-AD3E-4079-9816-34CDF3D8449D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2744C8B8-AD3E-4079-9816-34CDF3D8449D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2744C8B8-AD3E-4079-9816-34CDF3D8449D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2744C8B8-AD3E-4079-9816-34CDF3D8449D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03442469-4E33-4CD0-8168-1FDC70EF6461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03442469-4E33-4CD0-8168-1FDC70EF6461}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03442469-4E33-4CD0-8168-1FDC70EF6461}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03442469-4E33-4CD0-8168-1FDC70EF6461}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

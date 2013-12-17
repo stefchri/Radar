@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Radar is een webapplicatie waarmee je alles snel vindt.">
+    <meta name="keywords" content="Radar, search, Gent, zoek, zoeken, zoeken in Gent, stefchri">
+    <meta name="author" content="Stefaan Christiaens">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="1 week">
+    <title>Radar | @ViewBag.Title</title>
+    @RenderSection("defaultHead", true)
+</head>
+<body>
+    <div>
+        @RenderBody()
+        
+    </div>
+    @RenderSection("scripts", false)
+</body>
+</html>

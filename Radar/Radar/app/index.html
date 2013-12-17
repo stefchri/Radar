@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" ng-app="Radar">
+<head>
+  <meta charset="utf-8">
+  <title>Radar</title>
+  <link rel="stylesheet" href="css/radar.css"/>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+</head>
+<body ng-cloak>
+  <div class="wrapper">
+    <header>
+      <div class="container">
+        <a href="#/" title="Radar Home" id="logo">
+          <img ng-src="img/layout/logo.png" alt="Radar Logo"/>
+        </a>
+        <div>
+          <a href="#/hello" title="Registreer je bij Radar">Registreer je nu</a>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </header>
+
+    <div ng-view></div> 
+    <div class="push"></div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div id="socialbuttons">
+        <a href="/" title="Radar op facebook">
+          <img ng-src="img/layout/fb.png" alt="Radar facebook"/>
+        </a>
+        <a href="/" title="Radar op Twitter">
+          <img ng-src="img/layout/twitter.png" alt="Radar Twitter"/>
+        </a>
+        <a href="/" title="Radar op Google+">
+          <img ng-src="img/layout/googlep.png" alt="Radar Google+"/>
+        </a>
+      </div>
+      <div id="copy">
+        &copy;2013-2014 <a href="http:twitter.com/stefchri" title="Ontwikkelaar Stefchri op Twitter">Stefchri</a> 
+      </div>
+    </div>
+  </footer>
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+  -->
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular/angular-route.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+</body>
+</html>
