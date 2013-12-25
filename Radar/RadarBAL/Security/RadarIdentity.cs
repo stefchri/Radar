@@ -41,7 +41,7 @@ namespace RadarBAL.Security
         public RadarIdentity(string email, string auhtenticationType)
         {
             Email = email;
-            AuthenticationType = AuthenticationType;
+            AuthenticationType = auhtenticationType;
             SetUser();
         }
         private void SetUser()

@@ -24,13 +24,14 @@ public class BasicAuthenticationMessageHandler : DelegatingHandler
         var parts = userPass.Split(":".ToCharArray());
         var email = parts[0];
         var password = parts[1];
-
-        if (!Membership.ValidateUser(email, password))
+        var mem = new UserMembershipProvider();
+        if (!mem.ValidateUserEncoded(email, password))
             return base.SendAsync(request, cancellationToken);
 
         var i = new RadarIdentity(email, "Basic");
         //var identity = new GenericIdentity(username, "Basic");
-        string[] roles = Roles.Provider.GetRolesForUser(email);
+        
+        //string[] roles = RadarRoleProvider.GetRolesForUser(email);
         var p = new RadarPrincipal(i);
         //var principal = new GenericPrincipal(i, roles);
         Thread.CurrentPrincipal = p;

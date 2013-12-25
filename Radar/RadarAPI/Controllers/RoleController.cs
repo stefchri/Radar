@@ -1,4 +1,5 @@
 ﻿using AttributeRouting.Web.Http;
+using RadarAPI.Attributes;
 using RadarBAL.ORM;
 using RadarModels;
 using System;
@@ -36,6 +37,8 @@ namespace RadarAPI.Controllers
         }
 
 
+        [MembershipHttpAuthorize()]
+        //[Authorize]
         [GET("api/roles/{id}")]
         public Role Get(int id)
         {

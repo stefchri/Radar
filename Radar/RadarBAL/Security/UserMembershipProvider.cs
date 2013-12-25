@@ -126,9 +126,8 @@ namespace RadarBAL.Security
         private static string CreatePasswordHash(string password, string salt)
         {
             var i = 0;
-            string snp = string.Concat(password, salt);
-            var hashed = HashString(snp,"SHA512");
-            while (i > 0)
+            string hashed = password;
+            while (i < 100)
             {
                 string concat = string.Concat(hashed, salt);
                 hashed = HashString(concat, "SHA512");
@@ -140,9 +139,7 @@ namespace RadarBAL.Security
         {
             HashAlgorithm algorithm = HashAlgorithm.Create(hashName);
             if (algorithm == null)
-            {
                 throw new ArgumentException("Unrecognized hash name", "hashName");
-            }
             byte[] hash = algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
             return Convert.ToBase64String(hash);
         }
@@ -283,6 +280,22 @@ namespace RadarBAL.Security
             return false;
         }
 
+        public bool ValidateUserEncoded(string email, string password)
+        {
+            //1. GET USER BY EMAIL
+            User user = Adapter.UserRepository.First(a => a.Email.Equals(email), null);
+            if (user != null)
+            {
+                //2. CHECK IF USER IS NOT VIRTUAL DELETED
+                if (user.DeletedDate != null) return false;
+                //3. VALIDATE USER
+                if (user.Password != password)
+                    return false;
+                return true;
+            }
+            return false;
+        }
+
         /**
          * NORMAL CREATE USER (NOT USED IN APP)
          **/
@@ -291,7 +304,7 @@ namespace RadarBAL.Security
             throw new NotImplementedException();
         }
 
-        public MembershipUser CreateUserBetter(string username, string email, string gender, string password, DateTime dob, string bio, out MembershipCreateStatus status)
+        public MembershipUser CreateUserBetter(string username, string email, string gender, string password, DateTime dob, string bio, long locationId, out MembershipCreateStatus status)
         {
             var args = new ValidatePasswordEventArgs(email, password, true);
 
@@ -347,6 +360,7 @@ namespace RadarBAL.Security
                         CreatedDate = DateTime.UtcNow,
                         DateOfBirth = dob
                     };
+                    user.LocationId = locationId;
                     //CREATE USER VIA UNITOFWORK
                     Adapter.UserRepository.Insert(user);
                     Adapter.Save();

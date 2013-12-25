@@ -1,6 +1,130 @@
-﻿@{
-    ViewBag.Title = "Register";
+﻿@model RadarAPI.Models.Register
+@{
+    ViewBag.Title = "Registreren";
 }
+<h2>Registreren bij RADAR</h2>
+@*@class="form-horizontal span8 clearfix block"*@
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { }))
+{
+        
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
 
-<h2>Register</h2>
-<p>My register yeaaah!!</p>
+    <div class="control-group">
+        @Html.LabelFor(model => model.Username, new { @class = "control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(model => model.Username)
+        </div>
+        @Html.ValidationMessageFor(model => model.Username)
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.Email, new { @class = "control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(model => model.Email)
+        </div>
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.Password, new { @class = "control-label"})
+        <div class="controls">
+            @Html.PasswordFor(model => model.Password)
+        </div>
+        @Html.ValidationMessageFor(model => model.Password)
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.PasswordRepeat, new { @class = "control-label"})
+        <div class="controls">
+            @Html.PasswordFor(model => model.PasswordRepeat)
+        </div>
+        @Html.ValidationMessageFor(model => model.PasswordRepeat)
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.Gender, new { @class = "control-label"})
+        <div class="controls">
+            <label>@Html.RadioButtonFor(m => m.Gender, true, new { @checked="checked"}) Man</label>
+            <label>@Html.RadioButtonFor(m => m.Gender, false) Vrouw</label>
+        </div>
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.DateOfBirth, new { @class = "control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(model => model.DateOfBirth, new { type="date"})
+        </div>
+        @Html.ValidationMessageFor(model => model.DateOfBirth)
+    </div>
+
+    <div class="control-group">
+        @Html.LabelFor(model => model.Bio, new { @class = "control-label"})
+        <div class="controls">
+            @Html.TextAreaFor(m => m.Bio)
+        </div>
+        @Html.ValidationMessageFor(model => model.Bio)
+    </div>
+    
+    <h2>Locatie</h2>
+    <div class="control-group">
+        @Html.LabelFor(model => model.Location.Street, new { @class = "control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(model => model.Location.Street)
+        </div>
+        @Html.ValidationMessageFor(model => model.Location.Street)
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.Location.Number, new { @class = "control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(model => model.Location.Number)
+        </div>
+        @Html.ValidationMessageFor(model => model.Location.Number)
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.Location.Box, new { @class = "control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(model => model.Location.Box)
+        </div>
+        @Html.ValidationMessageFor(model => model.Location.Box)
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.Location.City, new { @class = "control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(model => model.Location.City)
+        </div>
+        @Html.ValidationMessageFor(model => model.Location.City)
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.Location.Zipcode, new { @class = "control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(model => model.Location.Zipcode)
+        </div>
+        @Html.ValidationMessageFor(model => model.Location.Zipcode)
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.Location.Country, new { @class = "control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(model => model.Location.Country)
+        </div>
+        @Html.ValidationMessageFor(model => model.Location.Country)
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.Location.Latitude, new { @class = "control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(model => model.Location.Latitude)
+        </div>
+        @Html.ValidationMessageFor(model => model.Location.Latitude)
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.Location.Longitude, new { @class = "control-label"})
+        <div class="controls">
+            @Html.TextBoxFor(model => model.Location.Longitude)
+        </div>
+        @Html.ValidationMessageFor(model => model.Location.Longitude)
+    </div>
+    
+    
+    
+    <div class="control-group">
+        <div class="controls">
+            <input type="submit" value="Registreer" class="btn btn-register" />
+        </div>
+    </div>
+        
+}

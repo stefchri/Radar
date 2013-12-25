@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RadarAPI.RadarModelBinders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,6 +26,7 @@ namespace RadarAPI
             GlobalConfiguration.Configuration.MessageHandlers.Add(
                 new BasicAuthenticationMessageHandler()
             );
+            ModelBinders.Binders.DefaultBinder = new TrimModelBinder();
         }
     }
 }
