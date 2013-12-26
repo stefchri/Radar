@@ -3,8 +3,9 @@
 /* Controllers */
 
 angular.module('Radar.controllers', [])
-    .controller('HomeController', ["$scope", "ValueFactory", function ($scope, ValueFactory) {
+    .controller('HomeController', ["$scope", "ValueFactory", "Base64", "$location", function ($scope, ValueFactory, Base64, $location) {
         $scope.basePath = ValueFactory.WebBasePath;
+        $scope.currentUrl = Base64.encode($location.absUrl());
     }])
     .controller('MyCtrl2', ["$scope", "EntityFactory", "$http", "$log", "AuthFactory", "$cookies", function ($scope, EntityFactory, $http, $log, AuthFactory, $cookies) {
         $log.log("Test");

@@ -29,16 +29,17 @@ namespace RadarAPI.Controllers.WEB
         }
         #endregion
 
-        public ActionResult Login(string redirect)
+        public ActionResult Login(string redirectUrl = "")
         {
             Login model = new Login();
+            ViewBag.redirectUrl = redirectUrl;
             return View(model);
         }
 
         [HttpPost]
         [ActionName("Login")]
         [ValidateAntiForgeryToken]
-        public ActionResult LoginPost(string redirect, Login model)
+        public ActionResult LoginPost(string redirectUrl, Login model)
         {
             if (ModelState.IsValid)
             {
@@ -61,22 +62,27 @@ namespace RadarAPI.Controllers.WEB
                         HttpCookie cookieP = new HttpCookie("RadarPassword", user.Password);
                         this.ControllerContext.HttpContext.Response.Cookies.Add(cookieP);
 
-                        if (!String.IsNullOrEmpty(redirect))
+                        if (!String.IsNullOrEmpty(redirectUrl))
                         {
-                            return Redirect(redirect + "?&login=success");
+                            byte[] b = Convert.FromBase64String(redirectUrl);
+                            string url = System.Text.Encoding.UTF8.GetString(b);
+                            return Redirect(url + "?&login=success");
                         }
                         else
                             return RedirectToAction("Index", "Home", new { message = "login" });
                     }
-                    
+
                 }
                 else
+                {
+                    ViewBag.redirectUrl = redirectUrl;
                     ModelState.AddModelError("", "Het emailadres of het paswoord is niet geldig.");
+                }
             }
             return View(model);
         }
 
-        public ActionResult Register(string redirect)
+        public ActionResult Register()
         {
             Register model = new Register();
             return View(model);
@@ -85,7 +91,7 @@ namespace RadarAPI.Controllers.WEB
         [HttpPost]
         [ActionName("Register")]
         [ValidateAntiForgeryToken]
-        public ActionResult RegisterPost(Register model, string redirect)
+        public ActionResult RegisterPost(Register model)
         {
             if (ModelState.IsValid)
             {
@@ -131,6 +137,7 @@ namespace RadarAPI.Controllers.WEB
                     //mm.SmtpLogin = "aonderzoek@gmail.com";
                     //mm.SmtpPassword = "qwerty123!";
                     //mm.SendMail();
+                    
                     return RedirectToAction("Index", "Home", new { message = "registered" });
 
                 }

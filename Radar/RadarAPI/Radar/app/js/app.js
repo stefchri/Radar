@@ -37,6 +37,4 @@ config(['$routeProvider', '$locationProvider', "$httpProvider", function ($route
         }
     }];
     $httpProvider.responseInterceptors.push(interceptor);
-
-  // $locationProvider.html5Mode(true); //ENABLE FOR REGULAR URLS WITHOUT #
 }]);

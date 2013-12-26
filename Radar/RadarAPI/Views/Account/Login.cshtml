@@ -2,32 +2,20 @@
 @{
     ViewBag.Title = "Aanmelden";
 }
-<h2>Aanmelden bij RADAR</h2>
-@*@class="form-horizontal span8 clearfix block"*@
-@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { }))
-{
-        
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
 
-    <div class="control-group">
-        @Html.LabelFor(model => model.Email, new { @class = "control-label"})
-        <div class="controls">
-            @Html.TextBoxFor(model => model.Email)
-        </div>
+
+
+<div class="container">
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class="form-signin", @role="form"}))
+    {
+        <h2 class="form-signin-heading">Aanmelden bij RADAR</h2>
+ 
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.Hidden("redirectUrl", (object)ViewBag.redirectUrl.ToString())
+        @Html.TextBoxFor(model => model.Email, new { @class="form-control", autofocus="autofocus", placeholder = "Email", required="required", type="email" })
         @Html.ValidationMessageFor(model => model.Email)
-    </div>
-    <div class="control-group">
-        @Html.LabelFor(model => model.Password, new { @class = "control-label"})
-        <div class="controls">
-            @Html.PasswordFor(model => model.Password)
-        </div>
-        @Html.ValidationMessageFor(model => model.Password)
-    </div>
-    <div class="control-group">
-        <div class="controls">
-            <input type="submit" value="Aanmelden" class="btn btn-login" />
-        </div>
-    </div>
-        
-}
+        @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Paswoord", required="required" })
+        <input type="submit" value="Aanmelden" class="btn btn-lg btn-primary btn-block" />
+    }
+</div>

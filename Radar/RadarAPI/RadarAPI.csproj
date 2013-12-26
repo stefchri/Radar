@@ -185,8 +185,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="crossdomain.xml" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Radar\app\lib\angular\angular-animate.min.js.map" />
     <Content Include="Radar\app\lib\angular\angular-cookies.min.js.map" />
@@ -211,7 +216,6 @@
     <Content Include="Radar\img\.gitignore" />
     <Content Include="Radar\LICENSE.md" />
     <Content Include="Radar\README.md" />
-    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="humans.txt" />
     <Content Include="Radar\apple-touch-icon-precomposed.png" />
     <Content Include="Radar\app\css\radar.css" />
@@ -500,8 +504,15 @@
     <Content Include="Radar\robots.txt" />
     <Content Include="Radar\scripts\modernizr-2.6.2.min.js" />
     <Content Include="robots.txt" />
-    <Content Include="Scripts\jquery-1.8.2.js" />
-    <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
