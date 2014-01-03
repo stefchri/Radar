@@ -1,5 +1,4 @@
-﻿using AttributeRouting.Web.Http;
-using RadarBAL.ORM;
+﻿using RadarBAL.ORM;
 using RadarModels;
 using System;
 using System.Collections.Generic;
@@ -10,6 +9,7 @@ using System.Web.Http;
 
 namespace RadarAPI.Controllers
 {
+    [RoutePrefix("api/employees")]
     public class EmployeeController : ApiController
     {
         #region UNITOFWORK
@@ -27,7 +27,7 @@ namespace RadarAPI.Controllers
         }
         #endregion
 
-        [GET("api/employees")]
+        [Route("")]
         public List<Employee> Get()
         {
             List<Employee> emps = Adapter.EmployeeRepository.GetAll().OrderBy(c => c.User.Username).ToList();
@@ -35,7 +35,7 @@ namespace RadarAPI.Controllers
         }
 
 
-        [GET("api/employees/{id}")]
+        [Route("{id:int}")]
         public Employee One(int id)
         {
             Employee emp = Adapter.EmployeeRepository.GetByID(id);
@@ -46,7 +46,7 @@ namespace RadarAPI.Controllers
 
 
 
-        [POST("api/employees")]
+        [HttpPost, Route("")]
         [Authorize]
         public HttpStatusCode Insert(Company comp)
         {
@@ -59,7 +59,7 @@ namespace RadarAPI.Controllers
             throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
         }
 
-        [POST("api/employees/{id}")]
+        [HttpPut, Route("{id:int}")]
         [Authorize]
         public HttpStatusCode Update(int id, Company comp)
         {
@@ -73,7 +73,7 @@ namespace RadarAPI.Controllers
             throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
         }
 
-        [POST("api/employees/delete/{id}")]
+        [HttpDelete, Route("{id:int}")]
         [Authorize]
         public HttpStatusCode Delete(int id)
         {
@@ -90,14 +90,14 @@ namespace RadarAPI.Controllers
 
 
 #region COMPANY EMPLOYEES
-        [GET("api/companies/{companyId}/employees")]
+        [HttpGet, Route("{companyId:int}/employees")]
         public List<Employee> Get(int companyId)
         {
             List<Employee> emps = Adapter.EmployeeRepository.Find(e => e.CompanyId == companyId, "").OrderBy(c => c.User.Username).ToList();
             return emps;
         }
 
-        [GET("api/companies/{companyId}/employees/search/{name}")]
+        [HttpGet, Route("{companyId:int}/employees/{name:alpha}")]
         public List<Employee> Search(int companyId, String name)
         {
             List<Employee> emps = Adapter.EmployeeRepository.Find(e => e.CompanyId == companyId, "").Where(c => c.User.Username.ToLower().Contains(name.ToLower())).OrderBy(c => c.User.Username).ToList();

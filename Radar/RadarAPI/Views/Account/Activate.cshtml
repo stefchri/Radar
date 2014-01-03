@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Activatie mislukt";
+}
+<div class="container login">
+@using (Html.BeginForm("Activate", "Account", FormMethod.Post, new { @class="form-signin", @role="form" }))
+{
+    <h1 class="form-signin-heading">Activatie van je account bij <strong>RADAR</strong></h1>
+    if (String.IsNullOrEmpty(ViewBag.Sent))
+    {
+        <p class="lead">Er is een fout opgetreden met de activatie</p>
+        <strong>@(String.IsNullOrEmpty(ViewBag.ErrorMsg)?ViewBag.ErrorMsg:"")</strong>
+    }
+    else
+    {
+        <p class="lead">De activatiemail is nogmaals verstuurd. Indien er nog problemen zouden voordoen gelieve dan support te contacteren.</p>
+    }
+    <hr />
+    @Html.AntiForgeryToken()
+    @if (!String.IsNullOrEmpty(ViewBag.ErrorMsg))
+    {
+        @Html.Label("Email *")
+        //@Html.ValidationMessageFor(model => model.Email)
+        @Html.TextBox("Email","", new { @class = "form-control", placeholder = "Emailadres", required = "required", type="email" })
+
+        <input type="submit" value="Vraag activatielink opniew aan" class="btn btn-lg btn-success btn-block" />
+    }
+    
+        
+}
+</div>

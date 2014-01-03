@@ -1,5 +1,4 @@
-﻿using AttributeRouting.Web.Http;
-using RadarBAL.ORM;
+﻿using RadarBAL.ORM;
 using RadarModels;
 using System;
 using System.Collections.Generic;
@@ -10,6 +9,7 @@ using System.Web.Http;
 
 namespace RadarAPI.Controllers
 {
+    [RoutePrefix("api/companies")]
     public class CompanyController : ApiController
     {
         #region UNITOFWORK
@@ -27,14 +27,14 @@ namespace RadarAPI.Controllers
         }
         #endregion
 
-        [GET("api/companies")]
+        [Route("")]
         public List<Company> Get()
         {
             List<Company> comps = Adapter.CompanyRepository.GetAll().OrderBy(c => c.Name).ToList();
             return comps;
         }
 
-        [GET("api/companies/{id}")]
+        [Route("{id:int}")]
         public Company One(int id)
         {
             Company comp = Adapter.CompanyRepository.GetByID(id);
@@ -43,7 +43,7 @@ namespace RadarAPI.Controllers
             return comp;
         }
 
-        [GET("api/companies/search/{name}")]
+        [Route("{name:alpha}")]
         public List<Company> Search(String name)
         {
             List<Company> comps = Adapter.CompanyRepository.Find(c => c.Name.ToLower().Contains(name.ToLower()), "").OrderBy(c => c.Name).ToList();
@@ -53,7 +53,7 @@ namespace RadarAPI.Controllers
         }
 
 
-        [POST("api/companies")]
+        [HttpPost, Route("")]
         [Authorize]
         public HttpStatusCode Insert(Company comp)
         {
@@ -66,7 +66,7 @@ namespace RadarAPI.Controllers
             throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
         }
 
-        [POST("api/companies/{id}")]
+        [HttpPut, Route("{id:int}")]
         [Authorize]
         public HttpStatusCode Update(int id, Company comp)
         {
@@ -80,7 +80,7 @@ namespace RadarAPI.Controllers
             throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
         }
 
-        [POST("api/companies/delete/{id}")]
+        [HttpDelete, Route("{id:int}")]
         [Authorize]
         public HttpStatusCode Delete(int id)
         {

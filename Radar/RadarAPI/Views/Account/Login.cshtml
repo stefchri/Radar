@@ -5,17 +5,18 @@
 
 
 
-<div class="container">
+<div class="container login">
     @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class="form-signin", @role="form"}))
     {
-        <h2 class="form-signin-heading">Aanmelden bij RADAR</h2>
+        <h1 class="form-signin-heading">Aanmelden bij <strong>RADAR</strong></h1>
  
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
         @Html.Hidden("redirectUrl", (object)ViewBag.redirectUrl.ToString())
-        @Html.TextBoxFor(model => model.Email, new { @class="form-control", autofocus="autofocus", placeholder = "Email", required="required", type="email" })
+        @Html.TextBoxFor(model => model.Email, new { @class="form-control", autofocus="autofocus", placeholder = "Email", type="email" })
         @Html.ValidationMessageFor(model => model.Email)
-        @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Paswoord", required="required" })
-        <input type="submit" value="Aanmelden" class="btn btn-lg btn-primary btn-block" />
+        @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Paswoord" })
+        @Html.ValidationMessageFor(model => model.Email)
+        <input type="submit" value="Aanmelden" class="btn btn-lg btn-success btn-block" />
     }
 </div>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace RadarModels
 
         public virtual Role Role { get; set; }
         public virtual Company Company { get; set; }
+        [JsonIgnore]
         public virtual User User { get; set; }
         public virtual List<Post> Posts { get; set; }
     }

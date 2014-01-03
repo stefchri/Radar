@@ -1,5 +1,4 @@
-﻿using AttributeRouting.Web.Http;
-using RadarBAL.ORM;
+﻿using RadarBAL.ORM;
 using RadarModels;
 using System;
 using System.Collections.Generic;
@@ -10,6 +9,7 @@ using System.Web.Http;
 
 namespace RadarAPI.Controllers
 {
+    [RoutePrefix("api/locations")]
     public class LocationController : ApiController
     {
         #region UNITOFWORK
@@ -27,7 +27,7 @@ namespace RadarAPI.Controllers
         }
         #endregion
 
-        [GET("api/locations")]
+        [Route("")]
         public List<Location> Get()
         {
             List<Location> locs = Adapter.LocationRepository.GetAll().ToList();
@@ -35,7 +35,7 @@ namespace RadarAPI.Controllers
         }
 
 
-        [GET("api/locations/{id}")]
+        [Route("{id:int}")]
         public Location One(int id)
         {
             Location loc = Adapter.LocationRepository.GetByID(id);
@@ -46,7 +46,7 @@ namespace RadarAPI.Controllers
 
 
 
-        [POST("api/locations")]
+        [HttpPost, Route("")]
         [Authorize]
         public HttpStatusCode Insert(Location loc)
         {
@@ -59,7 +59,7 @@ namespace RadarAPI.Controllers
             throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
         }
 
-        [POST("api/locations/{id}")]
+        [HttpPut, Route("{id:int}")]
         [Authorize]
         public HttpStatusCode Update(int id, Location loc)
         {
@@ -72,7 +72,7 @@ namespace RadarAPI.Controllers
             throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
         }
 
-        [POST("api/locations/delete/{id}")]
+        [HttpDelete, Route("{id:int}")]
         [Authorize]
         public HttpStatusCode Delete(int id)
         {
@@ -85,8 +85,7 @@ namespace RadarAPI.Controllers
             throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
         }
 
-
-        [GET("api/locations/{lat:decimal}/{lng:decimal}/{radius}")]
+        [HttpGet, Route("{lat:decimal}/{lng:decimal}/{radius:int}")]
         public List<Location> Get(Decimal lat, Decimal lng, int radius)
         {
             //1degree +/- = 111 km

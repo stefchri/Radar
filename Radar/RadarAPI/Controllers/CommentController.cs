@@ -1,5 +1,4 @@
-﻿using AttributeRouting.Web.Http;
-using RadarBAL.ORM;
+﻿using RadarBAL.ORM;
 using RadarModels;
 using System;
 using System.Collections.Generic;
@@ -10,6 +9,7 @@ using System.Web.Http;
 
 namespace RadarAPI.Controllers
 {
+    [RoutePrefix("api/comments")]
     public class CommentController : ApiController
     {
         #region UNITOFWORK
@@ -27,14 +27,14 @@ namespace RadarAPI.Controllers
         }
         #endregion
 
-        [GET("api/comments")]
+        [Route("")]
         public List<Comment> Get()
         {
             List<Comment> comms = Adapter.CommentRepository.GetAll().OrderByDescending(c => c.CreatedDate).ToList();
             return comms;
         }
 
-        [GET("api/comments/{id}")]
+        [Route("{id:int}")]
         public Comment One(int id)
         {
             Comment comm = Adapter.CommentRepository.GetByID(id);
@@ -43,7 +43,7 @@ namespace RadarAPI.Controllers
             return comm;
         }
 
-        [POST("api/comments")]
+        [HttpPost, Route("")]
         [Authorize]
         public HttpStatusCode Insert(Comment comm)
         {
@@ -56,7 +56,7 @@ namespace RadarAPI.Controllers
             throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
         }
 
-        [POST("api/comments/{id}")]
+        [HttpPut, Route("{id:int}")]
         [Authorize]
         public HttpStatusCode Update(int id, Comment comm)
         {
@@ -70,7 +70,7 @@ namespace RadarAPI.Controllers
             throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
         }
 
-        [POST("api/comments/delete/{id}")]
+        [HttpDelete, Route("{id:int}")]
         [Authorize]
         public HttpStatusCode Delete(int id)
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,14 +11,18 @@ namespace RadarModels
     public class Role
     {
         public int RoleId { get; set; }
+
         [Required]
         [MaxLength(255)]
         public string Name { get; set; }
+
         [Required]
         public RoleType Type { get; set; }
 
-        [ScriptIgnore]
+        [JsonIgnore]
         public virtual List<User> Users { get; set; }
+
+        [JsonIgnore]
         public virtual List<Employee> Employees { get; set; }
     }
     public enum RoleType

@@ -1,5 +1,4 @@
-﻿using AttributeRouting.Web.Http;
-using RadarBAL.ORM;
+﻿using RadarBAL.ORM;
 using RadarModels;
 using System;
 using System.Collections.Generic;
@@ -10,6 +9,7 @@ using System.Web.Http;
 
 namespace RadarAPI.Controllers
 {
+    [RoutePrefix("api/categories")]
     public class CategoryController : ApiController
     {
         #region UNITOFWORK
@@ -27,14 +27,14 @@ namespace RadarAPI.Controllers
         }
         #endregion
 
-        [GET("api/categories")]
+        [Route("")]
         public List<Category> Get()
         {
             List<Category> cats = Adapter.CategoryRepository.GetAll().OrderBy(c => c.Name).ToList();
             return cats;
         }
 
-        [GET("api/categories/{id}")]
+        [Route("{id:int}")]
         public Category One(int id)
         {
             Category cat = Adapter.CategoryRepository.GetByID(id);
@@ -43,7 +43,7 @@ namespace RadarAPI.Controllers
             return cat;
         }
 
-        [GET("api/categories/search/{name}")]
+        [Route("search/{name}")]
         public List<Category> Search(String name)
         {
             List<Category> cats = Adapter.CategoryRepository.Find(c => c.Name.ToLower().Contains(name.ToLower()), "Companies").OrderBy(c => c.Name).ToList();
@@ -52,7 +52,7 @@ namespace RadarAPI.Controllers
             return cats;
         }
 
-        [POST("api/categories")]
+        [HttpPost, Route("search/{name}")]
         public HttpStatusCode Insert(Category cat)
         {
             if (ModelState.IsValid)
@@ -64,7 +64,7 @@ namespace RadarAPI.Controllers
             throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
         }
 
-        [POST("api/categories/{id}")]
+        [HttpPut, Route("{id:int}")]
         public HttpStatusCode Update(int id, Category cat)
         {
             if (ModelState.IsValid && id == cat.CategoryId)
@@ -76,7 +76,7 @@ namespace RadarAPI.Controllers
             throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
         }
 
-        [POST("api/categories/delete/{id}")]
+        [HttpDelete, Route("{id:int}")]
         [Authorize(Roles="Admin")]
         public HttpStatusCode Delete(int id)
         {

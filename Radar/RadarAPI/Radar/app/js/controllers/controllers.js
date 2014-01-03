@@ -3,17 +3,28 @@
 /* Controllers */
 
 angular.module('Radar.controllers', [])
-    .controller('HomeController', ["$scope", "ValueFactory", "Base64", "$location", function ($scope, ValueFactory, Base64, $location) {
-        $scope.basePath = ValueFactory.WebBasePath;
-        $scope.currentUrl = Base64.encode($location.absUrl());
+    .controller('HomeController', ["$scope", function ($scope) {
+        
+    }]).controller('HeaderController', ["$scope", "AuthFactory", "ValueFactory", "$http", "$location", "$window", function ($scope, AuthFactory, ValueFactory, $http, $location, $window) {
+        $scope.isLoggedIn = false;
+        $scope.$on("GOT_USER", function (event, data) {
+            for (var i in data) {
+                $scope[i] = data[i];
+            }
+        });
+        $scope.logOff = function () {
+            AuthFactory.clearUser();
+            AuthFactory.clearCredentials();
+            $http.post(ValueFactory.WebBasePath + "account/logoff").then(function (result) {
+                if (result.data != null)
+                {
+                    $location.search(result.data);
+                    $window.location.reload();
+                }
+            });
+        }
     }])
-    .controller('MyCtrl2', ["$scope", "EntityFactory", "$http", "$log", "AuthFactory", "$cookies", function ($scope, EntityFactory, $http, $log, AuthFactory, $cookies) {
-        $log.log("Test");
-        var email = $cookies.RadarEmail;
-        var pass = $cookies.RadarPassword;
-        $log.log(email, pass);
-        if (email != undefined && pass != undefined && email != "" && pass != "")
-            AuthFactory.setCredentials(email, pass);
+    .controller('ProfileController', ["$scope", "EntityFactory", "$http", "$log", "AuthFactory", "$cookies", function ($scope, EntityFactory, $http, $log, AuthFactory, $cookies) {
 
         EntityFactory.getRoles().then(function (data) {
             $scope.roles = data;

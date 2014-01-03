@@ -18,10 +18,10 @@ namespace RadarBAL.Security
         #region VARIABLES
         private string _applicationName;
         private const bool _requiresUniqueEmail = true;
-        private const bool _requiresUniqueUsername = true;
+        private const bool _requiresUniqueUsername = false;
         private int _maxInvalidPasswordAttempts;
         private int _passwordAttemptWindow;
-        private int _minRequiredPasswordLength;
+        private int _minRequiredPasswordLength = 5;
         private int _minRequiredNonalphanumericCharacters;
         private bool _enablePasswordReset;
         private const bool _enablePasswordRetrieval = false;
@@ -227,12 +227,12 @@ namespace RadarBAL.Security
             User user = Adapter.UserRepository.First(u => u.Email.Equals(email), null);
             if (user != null)
             {
-                MembershipUser memUser = new UserMembershipUser("UserMembershipProvider",
+                UserMembershipUser memUser = new UserMembershipUser("RadarMembershipProvider",
                                                user.Email, null, user.Email,
                                                string.Empty, string.Empty,
                                                true, false, Convert.ToDateTime(user.CreatedDate),
                                                DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, user);
-                return memUser;
+                return memUser as MembershipUser;
             }
             return null;
         } 
@@ -322,7 +322,7 @@ namespace RadarBAL.Security
                 return null;
             }
 
-            if (string.IsNullOrEmpty(password))
+            if (password.Length < MinRequiredPasswordLength)
             {
                 status = MembershipCreateStatus.InvalidPassword;
                 return null;
@@ -366,7 +366,7 @@ namespace RadarBAL.Security
                     Adapter.Save();
 
                     status = MembershipCreateStatus.Success;
-                    return GetUser(email, true);
+                    return GetUser(email, false);
                 }
             }
             catch (Exception ex)

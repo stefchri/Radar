@@ -1,5 +1,4 @@
-﻿using AttributeRouting.Web.Http;
-using RadarAPI.Attributes;
+﻿using RadarAPI.Attributes;
 using RadarBAL.ORM;
 using RadarModels;
 using System;
@@ -11,7 +10,7 @@ using System.Web.Http;
 
 namespace RadarAPI.Controllers
 {
-    //[HttpHeader("Access-Control-Allow-Origin", "*")]     
+    [RoutePrefix("api/roles")]    
     public class RoleController : ApiController
     {
         #region UNITOFWORK
@@ -29,7 +28,7 @@ namespace RadarAPI.Controllers
         }
         #endregion
 
-        [GET("api/roles")]
+        [Route("")]
         public List<Role> Get()
         {
             List<Role> roles = Adapter.RoleRepository.GetAll().ToList();
@@ -38,8 +37,7 @@ namespace RadarAPI.Controllers
 
 
         [MembershipHttpAuthorize()]
-        //[Authorize]
-        [GET("api/roles/{id}")]
+        [Route("{id:int}")]
         public Role Get(int id)
         {
             var role = Adapter.RoleRepository.GetByID(id);
@@ -48,14 +46,8 @@ namespace RadarAPI.Controllers
             return role;
         }
 
-        [POST("api/roles/{id}")]
-        public HttpResponseMessage Update(int id, Role role)
-        {
-            return new HttpResponseMessage(HttpStatusCode.OK);
-        }
-
-        [POST("api/roles")]
-        public HttpStatusCode Update(Role role)
+        [HttpPut, Route("{id:int}")]
+        public HttpStatusCode Update(int id, Role role)
         {
             if (role != null && ModelState.IsValid)
             {
@@ -65,6 +57,5 @@ namespace RadarAPI.Controllers
             }
             throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
         }
-
     }
 }

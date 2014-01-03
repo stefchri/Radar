@@ -54,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigurationBLL.cs" />
+    <Compile Include="Mail\MailManager.cs" />
     <Compile Include="Migrations\201310292223421_FirstCommit.cs" />
     <Compile Include="Migrations\201310292223421_FirstCommit.Designer.cs">
       <DependentUpon>201310292223421_FirstCommit.cs</DependentUpon>
@@ -82,9 +84,7 @@
     <Compile Include="Security\UserMembershipProvider.cs" />
     <Compile Include="Security\UserMembershipUser.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Mail\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

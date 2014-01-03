@@ -79,6 +79,7 @@ header .container div {
 }
 header .container div a {
     line-height: 60px;
+    margin-left: 15px;
 }
 
 

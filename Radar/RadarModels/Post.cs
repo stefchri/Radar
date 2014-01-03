@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -26,8 +27,12 @@ namespace RadarModels
         [Required]
         public int EmployeeId { get; set; }
 
+        [JsonIgnore]
         public virtual Company Company { get; set; }
+
+        [JsonIgnore]
         public virtual Employee Employee { get; set; }
+
         public virtual List<User> Likes { get; set; }
     }
 }

@@ -19,6 +19,9 @@ public class BasicAuthenticationMessageHandler : DelegatingHandler
         if (authHeader.Scheme != "Basic")
             return base.SendAsync(request, cancellationToken);
 
+        if (String.IsNullOrEmpty(authHeader.Parameter))
+            return base.SendAsync(request, cancellationToken);
+
         var encodedUserPass = authHeader.Parameter.Trim();
         var userPass = Encoding.ASCII.GetString(Convert.FromBase64String(encodedUserPass));
         var parts = userPass.Split(":".ToCharArray());

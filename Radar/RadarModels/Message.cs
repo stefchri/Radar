@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -20,7 +21,9 @@ namespace RadarModels
         [Required]
         public int RecieverId { get; set; }
 
+        [JsonIgnore]
         public virtual User Sender { get; set; }
+
         public virtual User Reviever { get; set; }
     }
 }

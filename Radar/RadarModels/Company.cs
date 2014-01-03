@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -36,8 +37,13 @@ namespace RadarModels
         [ScriptIgnore]
         public virtual Company Parent { get; set; }
         public virtual List<Company> Branches { get; set; }
+
+        [JsonIgnore]
         public virtual List<User> UsersFollowing { get; set; }
+
         public virtual List<Employee> Employees { get; set; }
+
+        [JsonIgnore]
         public virtual List<Category> Categories { get; set; }
         public virtual List<Post> Posts { get; set; }
         public virtual List<Rating> Ratings { get; set; }

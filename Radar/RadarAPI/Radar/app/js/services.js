@@ -4,24 +4,39 @@
 
 angular.module('Radar.services', [])
     .constant("apiBasePath", "http://localhost:4911/api/")
-    .factory("EntityFactory", ["$http", "apiBasePath", "$log", function ($http, apiBasePath, $log) {
+    .factory("EntityFactory", ["$http", "apiBasePath", "$cookies", "$log", function ($http, apiBasePath, $cookies, $log) {
         return {
 
             /*** REGION ROLES ***/
 
             getRoles: function () {
-                return $http.get(apiBasePath + "role/", { cache: true }).then(function (result) {
+                return $http.get(apiBasePath + "roles/", { cache: true }).then(function (result) {
                     return result.data;
                 });
             },
             getRole: function (id) {
-                return $http.get(apiBasePath + "role/" + id, { cache: true }).then(function (result) {
+                return $http.get(apiBasePath + "roles/" + id, { cache: true }).then(function (result) {
                     return result.data;
                 });
-            }
+            },
 
             /*** END REGION ROLES ***/
 
+            /*** REGION USER ***/
+            
+            tryGetCurrentUser: function () {
+                var email = $cookies.RadarEmail;
+                if (email != undefined && email != null && email != "") {
+                    return $http.get(apiBasePath + "users/" + email, { cache: false }).then(function (result) {
+                        return result.data;
+                    });
+                }
+                else {
+                    return null;
+                }
+            },
+
+            /*** END REGION USER ***/
         }
     }])
     .factory("ValueFactory", function () {
@@ -113,13 +128,15 @@ angular.module('Radar.services', [])
             }
         };
     })
-    .factory('AuthFactory', ['Base64', '$cookieStore', '$http', "$log", function (Base64, $cookieStore, $http, $log) {
-        // initialize to whatever is in the cookie, if anything
-        //var authdata = $cookieStore.get('authdata');
-        //if (authdata != undefined && authdata != "")
-        //    $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookieStore.get('authdata');
+    .factory('AuthFactory', ['Base64', '$cookieStore', '$http', "$log", "$cookies",  function (Base64, $cookieStore, $http, $log, $cookies) {
 
+        var authdata = $cookieStore.get('authdata');
+        if (authdata != undefined && authdata != "")
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookieStore.get('authdata');
+
+        var _user = null;
         return {
+            /** BASIC AUTH HEADERS **/
             setCredentials: function (username, password) {
                 var encoded = Base64.encode(username + ':' + password);
                 $http.defaults.headers.common.Authorization = 'Basic ' + encoded;
@@ -129,7 +146,18 @@ angular.module('Radar.services', [])
                 document.execCommand("ClearAuthenticationCache");
                 $cookieStore.remove('authdata');
                 $http.defaults.headers.common.Authorization = 'Basic ';
-            }
+            },
+
+            /** CURRENT USER HANDLING **/
+            setUser: function (_user) {
+                var existing_cookie_user = $cookieStore.get('radar.user');
+                _user = _user || existing_cookie_user;
+                $cookieStore.put('radar.user', _user);
+            },
+            clearUser: function () {
+                $cookieStore.remove('radar.user');
+            },
+            user: _user,
         };
     }])
 ;
