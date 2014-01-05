@@ -1,19 +1,22 @@
 'use strict';
-
-
-// Declare app level module which depends on filters, and services
 angular.module('Radar', [
+    'ui.bootstrap',
     'ngCookies',
     'ngRoute',
+    'ngAnimate',
     'Radar.filters',
     'Radar.services',
     'Radar.directives',
-    'Radar.controllers'
+    'Radar.controllers',
+    'angularFileUpload',
+    'textAngular',
 ]).
 config(['$routeProvider', '$locationProvider', "$httpProvider", function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider.when('/', { templateUrl: 'partials/home.html', controller: 'HomeController' });
     $routeProvider.when('/profile', { templateUrl: 'partials/profile.html', controller: 'ProfileController' });
-    $routeProvider.when('/role/:roleId', { templateUrl: 'partials/partial3.html', controller: 'MyCtrl3' });
+    $routeProvider.when('/profile/edit', { templateUrl: 'partials/editprofile.html', controller: 'ProfileEditController' });
+    $routeProvider.when('/companies/add', { templateUrl: 'partials/addcompany.html', controller: 'CompanyAddController' });
+    $routeProvider.when('/people/{id}', { templateUrl: 'partials/people.html', controller: 'PeopleController' });
     $routeProvider.otherwise({ redirectTo: '/' });
 
     $httpProvider.defaults.useXDomain = true;
@@ -38,9 +41,6 @@ config(['$routeProvider', '$locationProvider', "$httpProvider", function ($route
         }
     }];
     $httpProvider.responseInterceptors.push(interceptor);
-
-
-
 }]).
 run(function ($rootScope, Base64, $location, ValueFactory, EntityFactory, AuthFactory, $http) {
     $rootScope.$on('$routeChangeSuccess', function () {
@@ -54,6 +54,7 @@ run(function ($rootScope, Base64, $location, ValueFactory, EntityFactory, AuthFa
                 if (_user != null)
                 {
                     AuthFactory.setUser(_user);
+                    AuthFactory.setCredentials(_user.Email, _user.Password);
                     $rootScope.$broadcast("GOT_USER", {
                         user: _user,
                         isLoggedIn: true

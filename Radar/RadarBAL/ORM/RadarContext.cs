@@ -109,6 +109,9 @@ namespace RadarBAL.ORM
                 .Property(a => a.ParentId)
                 .IsOptional();
             mb.Entity<Company>()
+                .Property(a => a.UserId)
+                .IsRequired();
+            mb.Entity<Company>()
                 .Property(a => a.CreatedDate)
                 .IsRequired();
             mb.Entity<Company>()
@@ -121,6 +124,10 @@ namespace RadarBAL.ORM
                 .HasRequired(a => a.Location)
                 .WithMany(a => a.Companies)
                 .HasForeignKey(s => s.LocationId).WillCascadeOnDelete(false);
+            mb.Entity<Company>()
+                .HasRequired(a => a.Manager)
+                .WithMany(a => a.CompaniesOwned)
+                .HasForeignKey(s => s.UserId).WillCascadeOnDelete(false);
             mb.Entity<Company>()
                .HasMany(a => a.Categories)
                .WithMany(a => a.Companies)

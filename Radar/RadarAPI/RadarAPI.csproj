@@ -161,6 +161,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -184,8 +185,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\logo.png" />
+    <Content Include="Radar\app\img\layout\placholder.png" />
     <Content Include="Radar\app\lib\angular\angular-animate.min.js.map" />
     <Content Include="Radar\app\lib\angular\angular-cookies.min.js.map" />
+    <Content Include="Radar\app\lib\angular\angular-file-upload-html5-shim.js" />
+    <Content Include="Radar\app\lib\angular\angular-file-upload-html5-shim.min.js" />
+    <Content Include="Radar\app\lib\angular\angular-file-upload-shim.js" />
+    <Content Include="Radar\app\lib\angular\angular-file-upload-shim.min.js" />
+    <Content Include="Radar\app\lib\angular\angular-file-upload.js" />
+    <Content Include="Radar\app\lib\angular\angular-file-upload.min.js" />
     <Content Include="Radar\app\lib\angular\angular-loader.min.js.map" />
     <Content Include="Radar\app\lib\angular\angular-resource.min.js.map" />
     <Content Include="Radar\app\lib\angular\angular-route.min.js.map" />
@@ -193,7 +201,14 @@
     <Content Include="Radar\app\lib\angular\angular-touch.min.js.map" />
     <Content Include="Radar\app\lib\angular\angular.min.js.map" />
     <Content Include="Radar\app\lib\angular\errors.json" />
+    <Content Include="Radar\app\lib\angular\FileAPI.flash.swf" />
+    <Content Include="Radar\app\lib\angular\FileAPI.min.js" />
     <Content Include="Radar\app\lib\angular\version.json" />
+    <Content Include="Radar\app\lib\editor\textAngular.js" />
+    <Content Include="Radar\app\lib\editor\textAngular.min.js" />
+    <Content Include="Radar\app\partials\addcompany.html" />
+    <Content Include="Radar\app\partials\openingHours.html" />
+    <Content Include="Radar\app\partials\editprofile.html" />
     <Content Include="Radar\app\partials\partial3.html" />
     <Content Include="Radar\doc\crossdomain.md" />
     <Content Include="Radar\doc\css.md" />
@@ -486,7 +501,7 @@
     <Content Include="Radar\app\lib\angular\i18n\angular-locale_zu.js" />
     <Content Include="Radar\app\lib\angular\version.txt" />
     <Content Include="Radar\app\partials\home.html" />
-    <Content Include="Radar\app\partials\partial2.html" />
+    <Content Include="Radar\app\partials\profile.html" />
     <Content Include="Radar\crossdomain.xml" />
     <Content Include="Radar\css\main.css" />
     <Content Include="Radar\css\normalize.css" />
@@ -498,6 +513,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Radar\app\lib\angular\ui-bootstrap-tpls-0.9.0.min.js" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -548,6 +564,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Radar\app\img\avatars\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

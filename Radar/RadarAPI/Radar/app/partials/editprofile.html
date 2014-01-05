@@ -1,0 +1,136 @@
+<div class="container">
+	<div class="row">
+        <div class="col-md-3">
+            <img ng-src="img/layout/placholder.png" alt="Profile image" class="img-rounded profileimg"  ng-hide="user.Avatar"/>
+            <img ng-src="img/avatars/{{user.Avatar}}" alt="{{user.Username}}" class="img-rounded profileimg"  ng-show="user.Avatar"/>
+            <input type="file" accept="image/*" ng-file-select="onFileSelect($files)" class=""/>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <form name="form" class="col-md-12">
+                    <div class="row form-group">
+                        <div class="col-md-3">
+                            <strong><label for="Username">Naam *</label></strong>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" name="Username" ng-model="user.Username" required class="form-control" autofocus="autofocus" />
+                            <span class="help-block text-danger" ng-show="form.Username.$error.required">Naam is verplicht in te vullen.</span>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3">
+                            <strong><label for="Email">Email *</label></strong>
+                        </div>
+                        <div class="col-md-9">
+                            <p class="form-control-static">{{user.Email}}</p>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3">
+                            <label for="DateOfBirth">Geboortedatum *</label>
+                        </div>
+                        <div class="col-md-9">
+                            <input type="text" name="DateOfBirth" ng-model="user.DateOfBirth" class="form-control" datepicker-popup="dd-MM-yyyy" max="'2000-01-01'" datepicker-options="{'year-format': 'yy','starting-day': 1}" ng-required="true" close-text="Sluiten" />
+                            <span class="help-block text-danger" ng-show="form.DateOfBirth.$error.required">Geboortedatum is verplicht in te vullen.</span>
+                            <span class="help-block text-danger" ng-show="form.DateOfBirth.$error.date">Geen correcte datum.</span>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3">
+                            <strong>Geslacht *</strong>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" ng-model="user.Gender" value="m" name="Gender"/>
+                                    Man
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" ng-model="user.Gender" value="f" name="Gender"/>
+                                    Vrouw
+                                </label>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3">
+                            <label for="Bio">Bio *</label>
+                        </div>
+                        <div class="col-md-9">
+                            <textarea name="Bio" ng-model="user.Bio" class="form-control noresize" required></textarea>
+                            <span class="help-block text-danger" ng-show="form.Bio.$error.required">Bio is verplicht in te vullen.</span>
+                        </div>
+                    </div>
+                    <div ng-show="changeAddress">
+                        <div class="row form-group">
+                            <div class="col-md-3">
+                                <label for="Street">Straat *</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" name="Street" ng-model="user.Location.Street" required class="form-control" />
+                            <span class="help-block text-danger" ng-show="form.Street.$error.required">Straat is verplicht in te vullen.</span>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3">
+                                <label for="Number">Huisnummer *</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" name="Number" ng-model="user.Location.Number" required class="form-control" />
+                                <span class="help-block text-danger" ng-show="form.Number.$error.required">Huisnummer is verplicht in te vullen.</span>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3">
+                                <label for="Box">Bus</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" name="Box" ng-model="user.Location.Box"  class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3">
+                                <label for="Zipcode">Postcode *</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" name="Zipcode" ng-model="user.Location.Zipcode" required class="form-control" />
+                                <span class="help-block text-danger" ng-show="form.Zipcode.$error.required">Postcode is verplicht in te vullen.</span>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3">
+                                <label for="City">Plaats *</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" name="City" ng-model="user.Location.City" required class="form-control" />
+                                <span class="help-block text-danger" ng-show="form.City.$error.required">Woonplaats is verplicht in te vullen.</span>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3">
+                                <label for="Country">Land *</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" name="Country" ng-model="user.Location.Country" required class="form-control" />
+                                <span class="help-block text-danger" ng-show="form.Country.$error.required">Land is verplicht in te vullen.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a href="" ng-click="changeAddress = !changeAddress" ng-hide="changeAddress" class="btn btn-default">Verander adres</a>
+                            <a href="" ng-click="changeAddress = !changeAddress" ng-show="changeAddress" class="btn btn-default">Laat adres ongewijzigd</a>
+                        </div>
+                        <div class="col-md-9">
+                            <button ng-click="update(user)" ng-disabled="form.$invalid || isUnchanged(user)" class="btn btn-success">Bewaren</button>
+                            <a ng-href="#/profile" class="btn btn-link">Annuleren</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+	</div>
+</div>

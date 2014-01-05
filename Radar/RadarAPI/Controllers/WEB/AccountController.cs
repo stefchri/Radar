@@ -86,7 +86,7 @@ namespace RadarAPI.Controllers.WEB
                             return Redirect(url + "?&message=login");
                         }
                         else
-                            return Redirect("http://localhost:4911/Radar/app/?message=login" );
+                            return Redirect("http://localhost:4911/Radar/app/#/?message=login");
                     }
 
                 }
@@ -156,7 +156,7 @@ namespace RadarAPI.Controllers.WEB
                         return Redirect(url + "?&message=registered");
                     }
                     else
-                        return Redirect("http://localhost:4911/Radar/app/?message=registered");
+                        return Redirect("http://localhost:4911/Radar/app/#/?message=registered");
                 }
             }
             else

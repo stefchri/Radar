@@ -72,6 +72,14 @@
     <Compile Include="Migrations\201311302020408_UpdateBla.Designer.cs">
       <DependentUpon>201311302020408_UpdateBla.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201401051049105_CompanyOwner.cs" />
+    <Compile Include="Migrations\201401051049105_CompanyOwner.Designer.cs">
+      <DependentUpon>201401051049105_CompanyOwner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401051126379_CompanyProfile.cs" />
+    <Compile Include="Migrations\201401051126379_CompanyProfile.Designer.cs">
+      <DependentUpon>201401051126379_CompanyProfile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ORM\GenericRepository.cs" />
     <Compile Include="ORM\RadarContext.cs" />
@@ -107,6 +115,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201311302020408_UpdateBla.resx">
       <DependentUpon>201311302020408_UpdateBla.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401051049105_CompanyOwner.resx">
+      <DependentUpon>201401051049105_CompanyOwner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401051126379_CompanyProfile.resx">
+      <DependentUpon>201401051126379_CompanyProfile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

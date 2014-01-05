@@ -1,4 +1,7 @@
-﻿using RadarBAL.ORM;
+﻿using Geocoding;
+using Geocoding.Google;
+using RadarAPI.Attributes;
+using RadarBAL.ORM;
 using RadarModels;
 using System;
 using System.Collections.Generic;
@@ -52,6 +55,54 @@ namespace RadarAPI.Controllers
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
             }
             return user;
+        }
+
+        [Route("{id:int}"), HttpPut()]
+        [MembershipHttpAuthorize()]
+        public bool UpdateProfile(int id,[FromBody] User user)
+        {
+            if (user == null)
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
+            var u = Adapter.UserRepository.GetByID(id);
+            if (user.Email == u.Email && id == user.UserId)
+            {
+                try
+                {
+                    u.Bio = user.Bio;
+                    u.Username = user.Username;
+                    u.DateOfBirth = user.DateOfBirth;
+                    u.Gender = user.Gender;
+                    u.ModifiedDate = DateTime.Now;
+                    Adapter.UserRepository.Update(u);
+
+                    var l = Adapter.LocationRepository.GetByID(user.Location.LocationId);
+                    l.Street = user.Location.Street;
+                    l.Number = user.Location.Number;
+                    l.Box = user.Location.Box;
+                    l.Zipcode = user.Location.Zipcode;
+                    l.City = user.Location.City;
+                    l.Country = user.Location.Country;
+                    IGeocoder geocoder = new GoogleGeocoder();
+                    Address[] addresses = geocoder.Geocode(l.Street + " " + l.Number + ", " + l.Zipcode + " " + l.City + ", " + l.Country).ToArray();
+                    if (addresses.Length != 0 && addresses[0].Coordinates != null)
+                    {
+                        l.Latitude = Convert.ToDecimal(addresses[0].Coordinates.Latitude);
+                        l.Longitude = Convert.ToDecimal(addresses[0].Coordinates.Longitude);
+                    }
+                    else
+                        return false;
+                    Adapter.LocationRepository.Update(l);
+
+                    Adapter.Save();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            else
+                return false;
         }
 
     }

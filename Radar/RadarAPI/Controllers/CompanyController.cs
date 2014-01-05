@@ -1,4 +1,7 @@
-﻿using RadarBAL.ORM;
+﻿using Geocoding;
+using Geocoding.Google;
+using RadarAPI.Attributes;
+using RadarBAL.ORM;
 using RadarModels;
 using System;
 using System.Collections.Generic;
@@ -54,16 +57,34 @@ namespace RadarAPI.Controllers
 
 
         [HttpPost, Route("")]
-        [Authorize]
-        public HttpStatusCode Insert(Company comp)
+        [MembershipHttpAuthorize()]
+        public HttpResponseMessage Insert(Company comp)
         {
-            if (ModelState.IsValid)
+            var l = new RadarModels.Location();
+            l.Street = comp.Location.Street;
+            l.Number = comp.Location.Number;
+            l.Box = comp.Location.Box;
+            l.Zipcode = comp.Location.Zipcode;
+            l.City = comp.Location.City;
+            l.Country = comp.Location.Country;
+            IGeocoder geocoder = new GoogleGeocoder();
+            Address[] addresses = geocoder.Geocode(l.Street + " " + l.Number + ", " + l.Zipcode + " " + l.City + ", " + l.Country).ToArray();
+            if (addresses.Length != 0 && addresses[0].Coordinates != null)
             {
-                Adapter.CompanyRepository.Insert(comp);
+                l.Latitude = Convert.ToDecimal(addresses[0].Coordinates.Latitude);
+                l.Longitude = Convert.ToDecimal(addresses[0].Coordinates.Longitude);
+
+                Adapter.LocationRepository.Insert(l);
                 Adapter.Save();
-                return HttpStatusCode.Created;
             }
-            throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
+            else
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, new Exception("Address not found"));
+
+            comp.Location = l;
+            comp.CreatedDate = DateTime.Now;
+            Adapter.CompanyRepository.Insert(comp);
+            Adapter.Save();
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         [HttpPut, Route("{id:int}")]

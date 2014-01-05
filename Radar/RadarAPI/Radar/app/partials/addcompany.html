@@ -1,0 +1,138 @@
+<div class="container">
+	<div class="row">
+        <div class="col-md-12">
+            <h1>Voeg je bedrijf toe</h1>
+            <hr />
+            <div class="row">
+                <form name="form" class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="row form-group">
+                            <div class="col-md-3">
+                                <strong><label for="Name">Naam *</label></strong>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" name="Name" ng-model="company.Name" ng-required="true" class="form-control" autofocus="autofocus" />
+                                <span class="help-block text-danger" ng-show="form.Name.$error.required">Naam is verplicht in te vullen.</span>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3">
+                                <strong><label for="Email">Email *</label></strong>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="email" name="Email" ng-model="company.Email" ng-required="true" class="form-control" />
+                                <span class="help-block text-danger" ng-show="form.Email.$error.required">Email is verplicht in te vullen.</span>
+                                <span class="help-block text-danger" ng-show="form.Email.$error.email">Email is niet correct.</span>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3">
+                                <label for="Desciption">Beschrijving *</label>
+                            </div>
+                            <div class="col-md-9">
+                                <textarea name="Desciption" ng-model="company.Description" class="form-control noresize" required></textarea>
+                                <span class="help-block text-danger" ng-show="form.Desciption.$error.required">Beschrijving is verplicht in te vullen.</span>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3">
+                                <label for="Type">Account Type *</label>
+                            </div>
+                            <div class="col-md-9">
+                                <select name="Type" ng-model="company.CompanyType" ng-required="true" class="form-control">
+                                    <option value="0">Free</option>
+                                    <option value="1">Basic</option>
+                                    <option value="2">Advanced</option>
+                                    <option value="3">Gold</option>
+                                </select>
+                                <span class="help-block">De accounttypes en hun eigenschappen kunnen geraadpleegd worden op de <a href="#/company/help">help</a> pagina.</span>
+                                <span class="help-block text-danger" ng-show="form.Type.$error.required">Accounttype is verplicht in te vullen.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row form-group">
+                            <div class="col-md-3">
+                                <label for="Street">Straat *</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" name="Street" ng-model="company.Location.Street" ng-required="true" class="form-control" />
+                            <span class="help-block text-danger" ng-show="form.Street.$error.required">Straat is verplicht in te vullen.</span>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3">
+                                <label for="Number">Huisnummer *</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" name="Number" ng-model="company.Location.Number" ng-required="true" class="form-control" />
+                                <span class="help-block text-danger" ng-show="form.Number.$error.required">Huisnummer is verplicht in te vullen.</span>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3">
+                                <label for="Box">Bus</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" name="Box" ng-model="company.Location.Box"  class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3">
+                                <label for="Zipcode">Postcode *</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" name="Zipcode" ng-model="company.Location.Zipcode" ng-required="true" class="form-control" />
+                                <span class="help-block text-danger" ng-show="form.Zipcode.$error.required">Postcode is verplicht in te vullen.</span>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3">
+                                <label for="City">Plaats *</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" name="City" ng-model="company.Location.City" ng-required="true" class="form-control" />
+                                <span class="help-block text-danger" ng-show="form.City.$error.required">Woonplaats is verplicht in te vullen.</span>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-3">
+                                <label for="Country">Land *</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="text" name="Country" ng-model="company.Location.Country" ng-required="true" class="form-control" />
+                                <span class="help-block text-danger" ng-show="form.Country.$error.required">Land is verplicht in te vullen.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="OpenHours">Openingsuren *</label>
+                            </div>
+                            <div class="col-md-12">
+                                <div name="OpenHours" opening-hours="test" hours="company.OpenHours" ng-required="true"></div>
+                                <span class="help-block text-danger" ng-show="form.OpenHours.$error.required">Openingsuren zijn verplicht in te vullen.</span>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="Extra">Extra informatie voor de bezoekers *</label>
+                            </div>
+                            <div class="col-md-12">
+                                <div text-angular text-angular-name="extraInformatie" ng-model="company.Extra" ng-required="true"></div>
+                                <span class="help-block text-danger" ng-show="form.Extra.$error.required">Extra informatie is verplicht in te vullen.</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12 endbuttons">
+                        <button ng-click="save(company);sent=true;" ng-disabled="form.$invalid || sent" class="btn btn-success">Bewaren</button>
+                        <a ng-href="#/profile" class="btn btn-link">Annuleren</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+	</div>
+</div>

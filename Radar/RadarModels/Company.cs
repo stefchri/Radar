@@ -15,6 +15,8 @@ namespace RadarModels
         [MaxLength(255)]
         public string Name { get; set; }
         [MaxLength(255)]
+        public string Email { get; set; }
+        [MaxLength(255)]
         public string Avatar { get; set; }
         [Required]
         public long LocationId { get; set; }
@@ -27,11 +29,13 @@ namespace RadarModels
         [Required]
         public CompanyType CompanyType { get; set; }
         public int? ParentId { get; set; }
+        public int UserId { get; set; }
 
         [Required]
         public DateTime CreatedDate { get; set; }
         public Nullable<DateTime> ModifiedDate { get; set; }
         public Nullable<DateTime> DeletedDate { get; set; }
+        public Nullable<DateTime> ActivatedDate { get; set; }
 
         public virtual Location Location { get; set; }
         [ScriptIgnore]
@@ -40,6 +44,9 @@ namespace RadarModels
 
         [JsonIgnore]
         public virtual List<User> UsersFollowing { get; set; }
+
+        [JsonIgnore]
+        public virtual User Manager { get; set; }
 
         public virtual List<Employee> Employees { get; set; }
 

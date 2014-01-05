@@ -4,7 +4,7 @@
 
 angular.module('Radar.services', [])
     .constant("apiBasePath", "http://localhost:4911/api/")
-    .factory("EntityFactory", ["$http", "apiBasePath", "$cookies", "$log", function ($http, apiBasePath, $cookies, $log) {
+    .factory("EntityFactory", ["$http", "apiBasePath", "$cookies", "$log", "$filter", function ($http, apiBasePath, $cookies, $log, $filter) {
         return {
 
             /*** REGION ROLES ***/
@@ -35,13 +35,30 @@ angular.module('Radar.services', [])
                     return null;
                 }
             },
+            updateProfile: function (user) {
+                return $http.put(apiBasePath + "users/" + user.UserId, user, { cache: false }).then(function (result) {
+                    return result.data;
+                });
+            },
 
             /*** END REGION USER ***/
+
+            /*** REGION COMPANY ***/
+            
+            addCompany: function (company) {
+                company.OpenHours = $filter('json')(company.OpenHours);
+                return $http.post(apiBasePath + "companies/" , company, { cache: false }).then(function (result) {
+                    return result.data;
+                });
+            },
+
+            /*** END REGION COMPANY ***/
         }
     }])
     .factory("ValueFactory", function () {
         return {
-            WebBasePath: "http://localhost:4911/"
+            WebBasePath: "http://localhost:4911/",
+            ApiBasePath: "http://localhost:4911/api/",
         }
     })
     .factory('Base64', function () {

@@ -8,7 +8,7 @@
     if (String.IsNullOrEmpty(ViewBag.Sent))
     {
         <p class="lead">Er is een fout opgetreden met de activatie</p>
-        <strong>@(String.IsNullOrEmpty(ViewBag.ErrorMsg)?ViewBag.ErrorMsg:"")</strong>
+        <strong>@(!String.IsNullOrEmpty(ViewBag.ErrorMsg)?ViewBag.ErrorMsg:"")</strong>
     }
     else
     {
@@ -16,7 +16,7 @@
     }
     <hr />
     @Html.AntiForgeryToken()
-    @if (!String.IsNullOrEmpty(ViewBag.ErrorMsg))
+    if (!String.IsNullOrEmpty(ViewBag.ErrorMsg))
     {
         @Html.Label("Email *")
         //@Html.ValidationMessageFor(model => model.Email)

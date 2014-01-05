@@ -55,6 +55,7 @@ namespace RadarModels
         public virtual Location Location { get; set; }
         public virtual List<Role> Roles { get; set; }
         public virtual List<Company> CompaniesFollowing { get; set; }
+        public virtual List<Company> CompaniesOwned { get; set; }
 
         public virtual List<User> FollowingUsers { get; set; }
 

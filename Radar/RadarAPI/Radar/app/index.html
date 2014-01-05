@@ -1,31 +1,38 @@
 <!doctype html>
-<html lang="en" ng-app="Radar">
+<html lang="nl" ng-app="Radar">
 <head>
-  <meta charset="utf-8">
-  <title>Radar</title>
-  <link rel="stylesheet" href="css/radar.css"/>
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <meta charset="utf-8">
+    <title>Radar</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/radar.css"/>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
 </head>
 <body ng-cloak>
   <div class="wrapper">
     <header ng-controller="HeaderController">
       <div class="container">
-        <a href="#/" title="Radar Home" id="logo">
-          <img ng-src="img/layout/logo.png" alt="Radar Logo"/>
-        </a>
-        <div ng-show="!isLoggedIn">
-          <a ng-href="{{webBasePath}}account/register?redirectUrl={{currentUrl}}" title="Registreer je bij Radar">Registreren</a>
-          <a ng-href="{{webBasePath}}account/login?redirectUrl={{currentUrl}}" title="Log je in je bij Radar">Aanmelden</a>
+        <div class="row">
+            <div class="col-md-6">
+                <a href="#/" title="Radar Home" id="logo">
+                    <img ng-src="img/layout/logo.png" alt="Radar Logo"/>
+                </a>
+            </div>
+            <div ng-show="!isLoggedIn" class="col-md-6">
+                <a class="right" ng-href="{{webBasePath}}account/register?redirectUrl={{currentUrl}}" title="Registreer je bij Radar">Registreren</a>
+                <a class="right" ng-href="{{webBasePath}}account/login?redirectUrl={{currentUrl}}" title="Log je in je bij Radar">Aanmelden</a>
+            </div>
+            <div ng-show="isLoggedIn" class="col-md-6">
+                <a class="right" href="" title="Afmelden bij Radar" ng-click="logOff();">Afmelden</a>
+                <a class="right" ng-href="#/profile" title="Profiel">{{user.Username}}</a>
+            </div>
+            <div class="clear"></div>
         </div>
-        <div ng-show="isLoggedIn">
-          <a ng-href="#/profile" title="Profiel">{{user.Username}}</a>
-          <a href="" title="Afmelden bij Radar" ng-click="logOff();">Afmelden</a>
-        </div>
-        <div class="clear"></div>
+        
       </div>
     </header>
 
-    <div ng-view ng-animate="{enter: 'enter-animation', leave: 'leave-animation'}"></div> 
+    <div ng-view class="animation"></div> 
     <div class="push"></div>
   </div>
 
@@ -47,12 +54,28 @@
       </div>
     </div>
   </footer>
-    <!-- In production use:
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-    -->
+    <!--[if lte IE 9]>
+    <script>
+        //optional need to be loaded before angular-file-upload-shim(.min).js
+        FileAPI = {
+            jsPath: '/lib/angular/FileAPI.min.js/folder/',
+            staticPath: '/lib/angular/FileAPI.flash.swf/folder/'
+        }
+    </script>
+    <![endif]-->
+    
+    <script src="lib/angular/angular-file-upload-shim.min.js"></script>
     <script src="lib/angular/angular.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>-->
+    <script src="lib/angular/ui-bootstrap-tpls-0.9.0.min.js"></script>
+    <script src="lib/editor/textAngular.min.js"></script>
+    
+    <script src="lib/angular/angular-animate.js"></script>
     <script src="lib/angular/angular-route.js"></script>
     <script src="lib/angular/angular-cookies.min.js"></script>
+    <script src="lib/angular/angular-file-upload.min.js"></script>
+    <script src="lib/angular/angular-sanitize.min.js"></script>
+
     <script src="js/services.js"></script>
     <script src="js/filters.js"></script>
     <script src="js/directives.js"></script>

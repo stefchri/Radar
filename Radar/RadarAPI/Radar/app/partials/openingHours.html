@@ -1,0 +1,18 @@
+<div>
+    <div class="row" ng-repeat="day in hours track by $index" style="margin-bottom:20px;border-bottom: 1px solid #AAA;padding-bottom: 15px;">
+        <div class="col-md-1" style="padding-top: 42px;">{{day.Name}}</div>
+        <div class="col-md-3" ng-repeat="time in day.Times track by $index">
+            <div class="left" ng-model="time.From">
+                <div timepicker hour-step="1" minute-step="1" show-meridian="false"></div>
+            </div>
+            <span class="left" style="padding-top: 39px;">&nbsp;&nbsp;__&nbsp;&nbsp;</span>
+            <div class="left" ng-model="time.To">
+                <div timepicker hour-step="1" minute-step="1" show-meridian="false"></div>
+            </div>
+        </div>
+        <div class="col-md-2" >
+            <a style="margin-top: 40px;" ng-click="removeTime($index)" class="btn btn-danger btn-sm left" title="Laatste uren verwijderen"> - </a>
+            <a style="margin-top: 40px;margin-left:5px;" ng-click="addTime($index)" class="btn btn-success btn-sm left" title="Uren toevoegen">+</a>
+        </div>
+    </div>
+</div>
