@@ -20,6 +20,7 @@ namespace RadarModels
         public Nullable<DateTime> DeletedDate { get; set; }
 
         public virtual Role Role { get; set; }
+        [JsonIgnore]
         public virtual Company Company { get; set; }
         [JsonIgnore]
         public virtual User User { get; set; }

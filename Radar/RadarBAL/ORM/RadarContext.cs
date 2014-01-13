@@ -293,7 +293,7 @@ namespace RadarBAL.ORM
                 .HasMaxLength(255);
             mb.Entity<Post>()
                 .Property(a => a.SubTitle)
-                .IsRequired()
+                .IsOptional()
                 .HasMaxLength(255);
             mb.Entity<Post>()
                 .Property(a => a.CreatedDate)

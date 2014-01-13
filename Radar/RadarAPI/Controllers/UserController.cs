@@ -29,6 +29,7 @@ namespace RadarAPI.Controllers
         #endregion
 
         [Route(""), HttpGet()]
+        [MembershipHttpAuthorize()]
         public List<User> Get()
         {
             List<User> users = Adapter.UserRepository.GetAll().OrderBy(c => c.Email).ToList();
@@ -36,6 +37,7 @@ namespace RadarAPI.Controllers
         }
 
         [Route("{id:int}"), HttpGet()]
+        [MembershipHttpAuthorize()]
         public User GetOne(int id)
         {
             User user = Adapter.UserRepository.GetByID(id);
@@ -103,6 +105,40 @@ namespace RadarAPI.Controllers
             }
             else
                 return false;
+        }
+
+        [Route("track/{id:int}"), HttpPost()]
+        [MembershipHttpAuthorize()]
+        public HttpResponseMessage TrackPerson(int id,[FromBody] User user)
+        {
+            User u = Adapter.UserRepository.Find(c => c.Email == user.Email, null).FirstOrDefault();
+            if (u == null)
+            {
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
+            }
+            else
+            {
+                u.FollowingUsers.Add(Adapter.UserRepository.GetByID(id));
+                Adapter.Save();
+            }
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        [Route("untrack/{id:int}"), HttpPost()]
+        [MembershipHttpAuthorize()]
+        public HttpResponseMessage UnTrackPerson(int id, [FromBody] User user)
+        {
+            User u = Adapter.UserRepository.Find(c => c.Email == user.Email, null).FirstOrDefault();
+            if (u == null)
+            {
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
+            }
+            else if (u.FollowingUsers.Contains(Adapter.UserRepository.GetByID(id)))
+            {
+                u.FollowingUsers.Remove(Adapter.UserRepository.GetByID(id));
+                Adapter.Save();
+            }
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
     }

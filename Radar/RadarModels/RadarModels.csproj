@@ -60,7 +60,6 @@
     <Compile Include="Post.cs" />
     <Compile Include="Rating.cs" />
     <Compile Include="Role.cs" />
-    <Compile Include="ScriptIgnor.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

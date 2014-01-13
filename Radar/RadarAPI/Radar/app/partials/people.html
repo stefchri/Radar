@@ -1,0 +1,43 @@
+<div class="container">
+	<div class="row">
+        <h1 class="col-md-12">Vind mensen om te tracken op je <strong>RADAR</strong></h1>
+	</div>
+    <div class="row">
+        <div  class="col-md-5">
+            <div class="input-group">
+                <span class="input-group-addon"><span class=" glyphicon glyphicon-search"></span></span>
+                <input type="text" ng-model="search" placeholder="Zoek vrienden" class="form-control" />
+            </div>
+        </div>
+	</div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="people">
+                <div class="person row" ng-repeat="person in users | filter: search | startFrom:(currentPage-1)*pageSize | limitTo:pageSize | orderBy:Username">
+                    <div class="col-md-2">
+                        <img ng-hide="person.Avatar" ng-src="img/layout/placholder.png" alt="{{person.Username}}" class="img-rounded col-md-8 round" />
+                        <img ng-show="person.Avatar" ng-src="img/avatars/{{user.Avatar}}" alt="{{person.Username}}" class="img-rounded col-md-8 round" />
+                    </div>
+                    <div class="col-md-3">
+                        {{person.Email}}
+                    </div>
+                    <div class="col-md-5">
+                        <p>{{person.Bio | limitTo:200}}...</p>
+                    </div>
+                    <div class="col-md-2 text-center" ng-show="user.UserId == person.UserId">
+                        <a class="btn btn-info" ng-href="#/profile"> Profiel </a>
+                    </div>
+                    <div class="col-md-2 text-center" ng-hide="person.UserId==user.UserId">
+                        <button ng-hide="tracks(person)" ng-click="track(person.UserId)" class="btn btn-primary"> Track </button>
+                        <button ng-show="tracks(person)" ng-click="unTrack(person.UserId)" class="btn btn-success"> Stop Tracking </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+    <div class="col">
+        <div class="col-md-12 text-center">
+            <pagination total-items="usercount" page="currentPage" previous-text="Vorige" next-text="Volgende" first-text="Eerste" last-text="Laatste" items-per-page="pageSize" max-size="5" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+        </div>
+    </div>
+</div>

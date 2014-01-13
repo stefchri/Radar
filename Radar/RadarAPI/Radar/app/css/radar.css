@@ -56,6 +56,12 @@ html[xmlns] .clearfix {
 .endbuttons{
     margin-bottom: 50px;
 }
+.text-danger {
+    color: #A94442;
+}
+.rowmargin {
+    margin-bottom: 20px;
+}
 
 /********* HEADER **********/
 header {
@@ -66,7 +72,7 @@ header {
     box-shadow:  0px 0px 5px 1px #000;
     position: relative;
     z-index: 10;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 header a{
     color: #fff;
@@ -211,4 +217,17 @@ form input.ng-invalid.ng-dirty {
 .ta-editor {
     height: 300px;
     margin-top: 20px;
+}
+
+/*** PEOPLE ***/
+.person {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-bottom: 1px solid #efefef;
+}
+.person:hover {
+    background: #EFEFEF;
+}
+.person:last-of-type {
+    border-bottom: none;
 }

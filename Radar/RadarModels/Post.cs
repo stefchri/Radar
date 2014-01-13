@@ -15,7 +15,6 @@ namespace RadarModels
         [Required]
         [MaxLength(255)]
         public string Title { get; set; }
-        [Required]
         [MaxLength(255)]
         public string SubTitle { get; set; }
         [Required]

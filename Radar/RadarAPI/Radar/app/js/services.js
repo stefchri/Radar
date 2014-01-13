@@ -40,19 +40,61 @@ angular.module('Radar.services', [])
                     return result.data;
                 });
             },
+            allUsers: function () {
+                return $http.get(apiBasePath + "users", { cache: false }).then(function (result) {
+                    return result.data;
+                });
+            },
+            trackPerson: function (id, user) {
+                return $http.post(apiBasePath + "users/track/" + id, user).then(function (result) {
+                    return result.data;
+                });
+            },
+            unTrackPerson: function (id, user) {
+                return $http.post(apiBasePath + "users/untrack/" + id, user).then(function (result) {
+                    return result.data;
+                });
+            },
 
             /*** END REGION USER ***/
 
             /*** REGION COMPANY ***/
             
+            getCompany: function (id) {
+                return $http.post(apiBasePath + "companies/" + id , { cache: false }).then(function (result) {
+                    result.data.OpenHours = JSON.parse(result.data.OpenHours);
+                    return result.data;
+                });
+            },
             addCompany: function (company) {
                 company.OpenHours = $filter('json')(company.OpenHours);
-                return $http.post(apiBasePath + "companies/" , company, { cache: false }).then(function (result) {
+                return $http.post(apiBasePath + "companies/", company, { cache: false }).then(function (result) {
+                    return result.data;
+                });
+            },
+            saveCompany: function (company, id) {
+                company.OpenHours = $filter('json')(company.OpenHours);
+                return $http.put(apiBasePath + "companies/" + id , company, { cache: false }).then(function (result) {
+                    return result.data;
+                });
+            },
+            deleteCompany: function (id) {
+                return $http.delete(apiBasePath + "companies/" + id, { cache: false }).then(function (result) {
                     return result.data;
                 });
             },
 
             /*** END REGION COMPANY ***/
+
+            /*** REGION POSTS ***/
+            
+            savePost: function (post) {
+                return $http.post(apiBasePath + "companies/posts/create", post, { cache: false }).then(function (result) {
+                    return result.data;
+                });
+            },
+
+            /*** END REGION POSTS ***/
         }
     }])
     .factory("ValueFactory", function () {

@@ -90,6 +90,11 @@ namespace RadarBAL.ORM
             return IDbSet.Add(entity);
         }
 
+        public virtual void UpdateValues(T entity, T orig)
+        {
+            context.Entry(orig).CurrentValues.SetValues(entity);
+        }
+
         public virtual void Update(T entityToUpdate)
         {
             IDbSet.Attach(entityToUpdate);

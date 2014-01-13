@@ -54,18 +54,18 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <strong>Bio</strong>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <p>{{user.Bio}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
                                             <strong>Bij RADAR sinds</strong>
                                         </div>
                                         <div class="col-md-8">
                                             <p>{{user.CreatedDate | date:'dd-MM-yyyy'}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <strong>Bio</strong>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <p>{{user.Bio}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -140,10 +140,10 @@
                             <h3>Je bedrijven op <strong>RADAR</strong></h3>
                             <div class="row">
                                 <p class="col-md-12">Voeg bedrijven toe om ze op de sociale Radar te plaatsen! Het is niet duur en levert veel op.</p>
-                                <p class="col-md-12" ng-if="user.CompaniesOwned.length == 0">Je hebt je bedrijf nog niet op Radar geplaatst? Doe dat dan maar snel!</p>
+                                <p class="col-md-12" ng-if="comps == 0">Je hebt je bedrijf nog niet op Radar geplaatst? Doe dat dan maar snel!</p>
 
                                 <!-- LIST OF COMPANIES -->
-                                <div class="col-md-12" ng-if="user.CompaniesOwned.length > 0">
+                                <div class="col-md-12" ng-if="comps > 0">
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
@@ -154,7 +154,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="company in user.CompaniesOwned">
+                                            <tr ng-repeat="company in user.CompaniesOwned | filter:!DeletedDate'">
                                                 <td>{{company.Name}}</td>
                                                 <td>{{company.Employees.length}}</td>
                                                 <td ng-if="company.ActivatedDate">{{company.ActivatedDate | date:'dd-MM-yyyy'}}</td>

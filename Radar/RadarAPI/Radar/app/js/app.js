@@ -16,9 +16,11 @@ config(['$routeProvider', '$locationProvider', "$httpProvider", function ($route
     $routeProvider.when('/profile', { templateUrl: 'partials/profile.html', controller: 'ProfileController' });
     $routeProvider.when('/profile/edit', { templateUrl: 'partials/editprofile.html', controller: 'ProfileEditController' });
     $routeProvider.when('/companies/add', { templateUrl: 'partials/addcompany.html', controller: 'CompanyAddController' });
-    $routeProvider.when('/people/{id}', { templateUrl: 'partials/people.html', controller: 'PeopleController' });
+    $routeProvider.when('/company/:companyId/manage', { templateUrl: 'partials/managecompany.html', controller: 'CompanyManageController' });
+    $routeProvider.when('/company/:companyId/delete', { templateUrl: 'partials/deletecompany.html', controller: 'CompanyDeleteController' }); 
+    $routeProvider.when('/company/:companyId/posts/create', { templateUrl: 'partials/createpost.html', controller: 'PostCreateController' });
+    $routeProvider.when('/people', { templateUrl: 'partials/people.html', controller: 'PeopleController' });
     $routeProvider.otherwise({ redirectTo: '/' });
-
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
@@ -62,5 +64,23 @@ run(function ($rootScope, Base64, $location, ValueFactory, EntityFactory, AuthFa
                 }
             });
         }
+        $rootScope.$on("RELOAD_USER", function (event, data) {
+            var response = EntityFactory.tryGetCurrentUser();
+            if (response != null) {
+                response.then(function (data) {
+                    var _user = data;
+                    console.log(data);
+                    if (_user != null) {
+                        AuthFactory.setUser(_user);
+                        AuthFactory.setCredentials(_user.Email, _user.Password);
+                        $rootScope.$broadcast("GOT_USER", {
+                            user: _user,
+                            isLoggedIn: true
+                        });
+                    }
+                });
+            }
+        });
+        
     })
 });

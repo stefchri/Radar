@@ -207,6 +207,10 @@
     <Content Include="Radar\app\lib\editor\textAngular.js" />
     <Content Include="Radar\app\lib\editor\textAngular.min.js" />
     <Content Include="Radar\app\partials\addcompany.html" />
+    <Content Include="Radar\app\partials\deletecompany.html" />
+    <Content Include="Radar\app\partials\createpost.html" />
+    <Content Include="Radar\app\partials\managecompany.html" />
+    <Content Include="Radar\app\partials\people.html" />
     <Content Include="Radar\app\partials\openingHours.html" />
     <Content Include="Radar\app\partials\editprofile.html" />
     <Content Include="Radar\app\partials\partial3.html" />

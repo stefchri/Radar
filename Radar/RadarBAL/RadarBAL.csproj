@@ -80,6 +80,10 @@
     <Compile Include="Migrations\201401051126379_CompanyProfile.Designer.cs">
       <DependentUpon>201401051126379_CompanyProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201401131804097_SubtitleNotRequired.cs" />
+    <Compile Include="Migrations\201401131804097_SubtitleNotRequired.Designer.cs">
+      <DependentUpon>201401131804097_SubtitleNotRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ORM\GenericRepository.cs" />
     <Compile Include="ORM\RadarContext.cs" />
@@ -121,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201401051126379_CompanyProfile.resx">
       <DependentUpon>201401051126379_CompanyProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201401131804097_SubtitleNotRequired.resx">
+      <DependentUpon>201401131804097_SubtitleNotRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
