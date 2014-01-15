@@ -1,0 +1,39 @@
+<div class="container">
+	<div class="row">
+        <h1 class="col-md-12">Nieuw artikel aanmaken voor {{company.Name}} op <strong>RADAR</strong>.</h1>
+	</div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row form-group">
+                <div class="col-md-2">
+                    <strong><label for="tit">Titel *</label></strong>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" name="tit" ng-model="post.Title" ng-required="true" class="form-control" autofocus="autofocus" />
+                    <span class="help-block text-danger" ng-show="form.tit.$error.required">Titel is verplicht in te vullen.</span>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-2">
+                    <strong><label for="subtit">Subtitel </label></strong>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" name="subtit" ng-model="post.SubTitle" class="form-control" />
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <label for="Desciption">Inhoud *</label>
+                </div>
+                <div class="col-md-12">
+                    <div text-angular text-angular-name="extraInformatie" ng-model="post.Body" ng-required="true"></div>
+                    <span class="help-block text-danger" ng-show="form.Extra.$error.required">Inhoud is verplicht in te vullen.</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 endbuttons">
+            <button ng-click="save();sent=true;" ng-disabled="form.$invalid || sent" class="btn btn-success">Bewaren</button>
+            <a ng-href="#/company/{{post.CompanyId}}/manage" class="btn btn-link">Annuleren</a>
+        </div>
+    </div>
+</div>

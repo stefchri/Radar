@@ -74,7 +74,6 @@ namespace RadarAPI.Controllers
         }
 
         [HttpDelete, Route("{id:int}")]
-        [Authorize]
         public HttpStatusCode Delete(int id)
         {
             Company comp = Adapter.CompanyRepository.GetByID(id);
@@ -91,9 +90,16 @@ namespace RadarAPI.Controllers
 
 #region COMPANY EMPLOYEES
         [HttpGet, Route("{companyId:int}/employees")]
-        public List<Employee> Get(int companyId)
+        public List<Employee> GetEmployees(int companyId)
         {
             List<Employee> emps = Adapter.EmployeeRepository.Find(e => e.CompanyId == companyId, "").OrderBy(c => c.User.Username).ToList();
+            return emps;
+        }
+
+        [HttpGet, Route("{companyId:int}/{userId:int}")]
+        public Employee GetEmployeebyCompAndUser(int companyId, int userId)
+        {
+            Employee emps = Adapter.EmployeeRepository.First(e => e.CompanyId == companyId && e.UserId == userId, "");
             return emps;
         }
 

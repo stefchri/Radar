@@ -161,6 +161,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
@@ -207,6 +208,8 @@
     <Content Include="Radar\app\lib\editor\textAngular.js" />
     <Content Include="Radar\app\lib\editor\textAngular.min.js" />
     <Content Include="Radar\app\partials\addcompany.html" />
+    <Content Include="Radar\app\partials\deletepost.html" />
+    <Content Include="Radar\app\partials\editpost.html" />
     <Content Include="Radar\app\partials\deletecompany.html" />
     <Content Include="Radar\app\partials\createpost.html" />
     <Content Include="Radar\app\partials\managecompany.html" />

@@ -1,0 +1,15 @@
+<div class="container">
+	<div class="row">
+        <h1 class="col-md-12">{{post.Title}} van <strong>RADAR</strong> verwijderen.</h1>
+	</div>
+    <div class="row">
+        <div class="col-md-12">
+            <p class="text-danger lead">Bent u zeker dat u dit artikel wilt verwijderen van RADAR?</p>
+        </div>
+        <div class="col-md-12 endbuttons">
+            <a href="#/company/{{company.CompanyId}}/manage" class="btn btn-success">Neen!</a>
+            <button ng-click="delete()" class=" btn btn-danger">Ja</button>
+        </div>
+	</div>
+    
+</div>

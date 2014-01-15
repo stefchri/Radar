@@ -141,5 +141,18 @@ namespace RadarAPI.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
+        [Route("{id:int}/followers"), HttpGet()]
+        [MembershipHttpAuthorize()]
+        public HttpResponseMessage GetFollowers(int id)
+        {
+            User u = Adapter.UserRepository.Find(c => c.UserId == id, null).FirstOrDefault();
+            if (u == null)
+            {
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
+            }
+            else 
+                return Request.CreateResponse(HttpStatusCode.OK, u.FollowingUsers);
+        }
+
     }
 }

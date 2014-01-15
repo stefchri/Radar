@@ -124,8 +124,31 @@
                         <tab>
                             <tab-heading>Vrienden</tab-heading>
                             <h3>Vrienden op <strong>RADAR</strong></h3>
-                            <div class="row">
-                                <p class="col-md-12">Vrienden</p>
+                            <div class="row" ng-hide="followers.length == 0">
+                                <div class="people col-md-12">
+                                    <div class="person row" ng-repeat="person in followers | orderBy:Username">
+                                        <div class="col-md-2">
+                                            <img ng-hide="person.Avatar" ng-src="img/layout/placholder.png" alt="{{person.Username}}" class="img-rounded col-md-8 round" />
+                                            <img ng-show="person.Avatar" ng-src="img/avatars/{{user.Avatar}}" alt="{{person.Username}}" class="img-rounded col-md-8 round" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            {{person.Email}}
+                                        </div>
+                                        <div class="col-md-5">
+                                            <p>{{person.Bio | limitTo:200}}...</p>
+                                        </div>
+                                        <div class="col-md-2 text-center" ng-show="user.UserId == person.UserId">
+                                            <a class="btn btn-info" ng-href="#/profile"> Profiel </a>
+                                        </div>
+                                        <div class="col-md-2 text-center" ng-hide="person.UserId==user.UserId">
+                                            <button ng-hide="tracks(person)" ng-click="track(person.UserId)" class="btn btn-primary"> Track </button>
+                                            <button ng-show="tracks(person)" ng-click="unTrack(person.UserId)" class="btn btn-success"> Stop Tracking </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" ng-show="followers.length == 0">
+                                <p class="text-primary col-md-12">Je hebt nog ggen vrienden op RADAR die je trackt. <a class="link" ng-href="#/people">Zoek vrienden</a></p>
                             </div>
                         </tab>
                         <tab>
@@ -154,7 +177,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="company in user.CompaniesOwned | filter:!DeletedDate'">
+                                            <tr ng-repeat="company in user.CompaniesOwned | filter:{DeletedDate: '!'}">
                                                 <td>{{company.Name}}</td>
                                                 <td>{{company.Employees.length}}</td>
                                                 <td ng-if="company.ActivatedDate">{{company.ActivatedDate | date:'dd-MM-yyyy'}}</td>

@@ -81,12 +81,36 @@ angular.module('Radar.controllers', [])
             });
         });
     }])
-    .controller('ProfileTabsController', function ($scope) {
+    .controller('ProfileTabsController', function ($scope, EntityFactory) {
         $scope.$on("GOT_USER", function (event, data) {
             for (var i in data) {
                 $scope[i] = data[i];
             }
+            EntityFactory.getFollowingUsers($scope.user.UserId).then(function (result) {
+                $scope.followers = result;
+            });
         });
+
+        $scope.track = function (id) {
+            EntityFactory.trackPerson(id, $scope.user).then(function (data) {
+                $scope.$emit("RELOAD_USER", null);
+                $scope.getAll();
+            });
+        }
+        $scope.unTrack = function (id) {
+            EntityFactory.unTrackPerson(id, $scope.user).then(function (data) {
+                $scope.$emit("RELOAD_USER", null);
+                $scope.getAll();
+            });
+        }
+        $scope.tracks = function (person) {
+            var ret = false;
+            if ($scope.user == {}) ret = false;
+            angular.forEach($scope.user.FollowingUsers, function (v, i) {
+                if (v.UserId == person.UserId) ret = true;
+            });
+            return ret;
+        };
     })
     .controller('ProfileEditController', function ($scope, EntityFactory, $location, $upload, ValueFactory, AuthFactory) {
         $scope.master = {};
@@ -337,9 +361,55 @@ angular.module('Radar.controllers', [])
             textAngularEditors: editors
         };
         
+        $scope.save = function () {
+            var emp = {};
+            EntityFactory.getEmployee($routeParams.companyId, $scope.user.UserId).then(function (result) {
+                emp = result;
+                $scope.post.EmployeeId = emp.EmployeeId;
+                EntityFactory.savePost($scope.post).then(function (r) {
+                    $location.path("/company/" + $routeParams.companyId + "/manage");
+                });
+            });
+            
+        }
+    })
+    .controller('PostEditController', function ($scope, EntityFactory, $location, $routeParams, $upload, ValueFactory) {
+        $scope.post = {}
+        EntityFactory.getPost($routeParams.postId).then(function (result) {
+            $scope.post = result;
+        })
+        $scope.$on("GOT_USER", function (event, data) {
+            for (var i in data) {
+                $scope[i] = data[i];
+            }
+        });
+        $scope.company = {};
+        $scope.getComp = function () {
+            EntityFactory.getCompany($routeParams.companyId).then(function (result) {
+                $scope.post.CompanyId = result.CompanyId;
+            });
+        }
+        $scope.getComp();
+        $scope.textAngularOpts = {
+            textAngularEditors: editors
+        };
 
         $scope.save = function () {
-            EntityFactory.savePost($scope.post).then(function (result) {
+            EntityFactory.updatePost($scope.post, $scope.post.PostId).then(function (r) {
+                $location.path("/company/" + $routeParams.companyId + "/manage");
+            });
+        }
+    })
+    .controller('PostDeleteController', function ($scope, EntityFactory, $location, $routeParams, $upload, ValueFactory) {
+        $scope.post = {};
+        $scope.getPost = function () {
+            EntityFactory.getPost($routeParams.postId).then(function (result) {
+                $scope.post = result;
+            });
+        }
+        $scope.getPost();
+        $scope.delete = function () {
+            EntityFactory.deletePost($routeParams.postId).then(function (result) {
                 $location.path("/company/" + $routeParams.companyId + "/manage");
             });
         }

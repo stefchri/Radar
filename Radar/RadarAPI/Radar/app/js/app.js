@@ -19,6 +19,8 @@ config(['$routeProvider', '$locationProvider', "$httpProvider", function ($route
     $routeProvider.when('/company/:companyId/manage', { templateUrl: 'partials/managecompany.html', controller: 'CompanyManageController' });
     $routeProvider.when('/company/:companyId/delete', { templateUrl: 'partials/deletecompany.html', controller: 'CompanyDeleteController' }); 
     $routeProvider.when('/company/:companyId/posts/create', { templateUrl: 'partials/createpost.html', controller: 'PostCreateController' });
+    $routeProvider.when('/company/:companyId/posts/edit/:postId', { templateUrl: 'partials/editpost.html', controller: 'PostEditController' });
+    $routeProvider.when('/company/:companyId/posts/delete/:postId', { templateUrl: 'partials/deletepost.html', controller: 'PostDeleteController' });
     $routeProvider.when('/people', { templateUrl: 'partials/people.html', controller: 'PeopleController' });
     $routeProvider.otherwise({ redirectTo: '/' });
     $httpProvider.defaults.useXDomain = true;

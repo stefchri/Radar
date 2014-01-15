@@ -55,6 +55,11 @@ angular.module('Radar.services', [])
                     return result.data;
                 });
             },
+            getFollowingUsers: function (id) {
+                return $http.get(apiBasePath + "users/" + id + "/followers").then(function (result) {
+                    return result.data;
+                });
+            },
 
             /*** END REGION USER ***/
 
@@ -93,8 +98,34 @@ angular.module('Radar.services', [])
                     return result.data;
                 });
             },
+            getPost: function (id) {
+                return $http.get(apiBasePath + "posts/" + id, { cache: false }).then(function (result) {
+                    return result.data;
+                });
+            },
+            updatePost: function (post) {
+                return $http.put(apiBasePath + "posts/"+ post.PostId, post, { cache: false }).then(function (result) {
+                    return result.data;
+                });
+            },
+            deletePost: function (id) {
+                return $http.delete(apiBasePath + "posts/"+ id, { cache: false }).then(function (result) {
+                    return result.data;
+                });
+            },
 
             /*** END REGION POSTS ***/
+
+            /*** REGION EMPLOYEES ***/
+            
+            getEmployee: function (compid, userid) {
+                return $http.get(apiBasePath + "employees/" + compid + "/" + userid, { cache: false }).then(function (result) {
+                    return result.data;
+                });
+            },
+
+            /*** END REGION EMPLOYEES ***/
+            
         }
     }])
     .factory("ValueFactory", function () {

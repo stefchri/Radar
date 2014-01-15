@@ -62,6 +62,9 @@ html[xmlns] .clearfix {
 .rowmargin {
     margin-bottom: 20px;
 }
+a.link {
+    text-decoration: underline;
+}
 
 /********* HEADER **********/
 header {

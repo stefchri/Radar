@@ -7,37 +7,41 @@
              <tabset>
                 <tab>
                     <tab-heading>Artikels</tab-heading>
-                    <h3>Artikels beheren</h3>
-                    <div class="row">
-                        <div class="col-md-12 rowmargin">
-                            <a href="#/company/{{company.CompanyId}}/posts/create" class="btn btn-success">Nieuw artikel</a>
+                    <div>
+                        <h3>Artikels beheren</h3>
+                        <div class="row">
+                            <div class="col-md-12 rowmargin">
+                                <a href="#/company/{{company.CompanyId}}/posts/create" class="btn btn-success">Nieuw artikel</a>
+                            </div>
+                        </div>
+                        <div class="row" ng-show="company.Posts.length > 0">
+                            <h4 class="col-md-12">Alle artikels</h4>
+                            <table class="col-md-12 table table-striped" ng-show="(company.Posts | filter:{DeletedDate:'!'}).length>0">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Titel</th>
+                                        <th>Datum</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="post in company.Posts | orderBy:CreatedDate | filter: {DeletedDate:'!'}">
+                                        <td>{{$index + 1}}</td>
+                                        <td>{{post.Title}}</td>
+                                        <td>{{post.CreatedDate | date:'dd/MM/yyyy'}}</td>
+                                        <td>
+                                            <a ng-href="#/company/{{company.CompanyId}}/posts/edit/{{post.PostId}}" class="btn btn-primary">Bewerken</a>
+                                            <a ng-href="#/company/{{company.CompanyId}}/posts/delete/{{post.PostId}}" class="btn btn-primary">Verwijderen</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row" ng-hide="(company.Posts | filter:{DeletedDate:'!'}).length>0">
+                            <p class="text-primary col-md-12">{{company.Name}} heeft nog geen artikels. Maak er nu een aan en vertel de wereld waarom ze bij {{company.Name}} moeten komen.</p>
                         </div>
                     </div>
-                    <div class="row" ng-show="company.Posts.length > 0">
-                        <h4 class="col-md-12">Alle artikels</h4>
-                        <table class="col-md-12 table table-striped">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Titel</th>
-                                    <th>Datum</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="post in company.Posts | orderBy:CreatedDate">
-                                    <td>{{$index}}</td>
-                                    <td>{{post.Title}}</td>
-                                    <td>{{post.CreatedDate | date:'dd/MM/yyyy'}}</td>
-                                    <td><a ng-href="#/post/{{post.PostId}}" class="btn btn-primary">Beheren</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="row" ng-hide="company.Posts.length > 0">
-                        <p class="text-primary col-md-12">{{company.Name}} heeft nog geen artikels. Maak er nu een aan en vertel de wereld waarom ze bij {{company.Name}} moeten komen.</p>
-                    </div>
-                    
                 </tab>
                  <tab>
                     <tab-heading>Werknemers</tab-heading>
